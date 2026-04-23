@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Lesson {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer lessonID;
     private int lessonNumber;
 
