@@ -1,11 +1,11 @@
 package com.wd44.drivingschoolsystem.Repos;
 
-import com.wd44.drivingschoolsystem.Classes.Instructor;
+import com.wd44.drivingschoolsystem.Models.Instructor;
 import org.springframework.data.repository.CrudRepository;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
 // CRUD refers Create, Read, Update, Delete
 
-public interface InstructorRepository extends CrudRepository<Instructor, Integer> {
+public interface InstructorRepo extends CrudRepository<Instructor, Integer> {
 
 }

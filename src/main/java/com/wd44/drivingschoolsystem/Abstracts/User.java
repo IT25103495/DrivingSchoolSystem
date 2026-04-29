@@ -1,34 +1,31 @@
-package com.wd44.drivingschoolsystem.Classes;
+package com.wd44.drivingschoolsystem.Abstracts;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
-public class Instructor {
+@MappedSuperclass
+public abstract class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer instructorID;
+    protected Integer ID;
 
-    private String fullName;
+    protected String fullName;
 
-    private LocalDate DoB;
+    protected LocalDate DoB;
 
-    private String email;
+    protected String email;
 
-    private String phoneNum;
+    protected String phoneNum;
 
-    private String userName;
-    private String password;
+    protected String userName;
+    protected String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
-    private List<Student> studentList;
-
-    //private String medicalDocPath;
-
-    public Integer getInstructorID() {
-        return instructorID;
+    public Integer getStudentID() {
+        return ID;
     }
     public String getFullName() {
         return fullName;
@@ -49,8 +46,8 @@ public class Instructor {
         return password;
     }
 
-    public void setInstructorID(Integer instructorID) {
-        this.instructorID = instructorID;
+    public void setStudentID(Integer ID) {
+        this.ID = ID;
     }
     public void setFullName(String fullName) {
         this.fullName = fullName;

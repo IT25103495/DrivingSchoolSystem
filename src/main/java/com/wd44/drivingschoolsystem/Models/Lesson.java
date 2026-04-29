@@ -1,4 +1,4 @@
-package com.wd44.drivingschoolsystem.Classes;
+package com.wd44.drivingschoolsystem.Models;
 
 import jakarta.persistence.*;
 
