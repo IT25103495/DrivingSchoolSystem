@@ -1,6 +1,6 @@
 package com.wd44.drivingschoolsystem.Controllers;
 
-import com.wd44.drivingschoolsystem.DTOs.InstructorCreateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Instructor.InstructorCreateDTO;
 import com.wd44.drivingschoolsystem.Models.Instructor;
 import com.wd44.drivingschoolsystem.Repos.InstructorRepo;
 import com.wd44.drivingschoolsystem.Services.InstructorService;

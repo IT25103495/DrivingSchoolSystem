@@ -1,6 +1,6 @@
 package com.wd44.drivingschoolsystem.Services;
 
-import com.wd44.drivingschoolsystem.DTOs.InstructorCreateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Instructor.InstructorCreateDTO;
 import com.wd44.drivingschoolsystem.Models.Instructor;
 import com.wd44.drivingschoolsystem.Repos.InstructorRepo;
 import jakarta.transaction.Transactional;

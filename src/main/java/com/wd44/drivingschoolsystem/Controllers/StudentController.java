@@ -1,6 +1,7 @@
 package com.wd44.drivingschoolsystem.Controllers;
 
-import com.wd44.drivingschoolsystem.DTOs.studentCreateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Student.studentCreateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Student.studentUpdateDTO;
 import com.wd44.drivingschoolsystem.Models.Student;
 import com.wd44.drivingschoolsystem.Repos.StudentRepo;
 import com.wd44.drivingschoolsystem.Services.StudentService;
@@ -21,6 +22,11 @@ public class StudentController {
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewStudent(@RequestBody studentCreateDTO std) {
         return studentService.addNewStudent(std);
+    }
+
+    @PutMapping(path="/update")
+    public @ResponseBody String updateStudent(@RequestParam int ID, @RequestBody studentUpdateDTO std) {
+        return studentService.updateStudent(ID, std);
     }
 
     @DeleteMapping(path="/delete")
