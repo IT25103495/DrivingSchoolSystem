@@ -6,15 +6,16 @@ import com.wd44.drivingschoolsystem.Models.Student;
 import com.wd44.drivingschoolsystem.Repos.StudentRepo;
 import com.wd44.drivingschoolsystem.Services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller // This means that this class is a Controller
-@RequestMapping(path="/student") // This means URL's start with /demo (after Application path)
+@Controller
+@RequestMapping(path="/student")
 public class StudentController {
     @Autowired
-    private StudentRepo StudentRepository;
+    private StudentRepo studentRepo;
 
     @Autowired
     private StudentService studentService;
@@ -36,6 +37,14 @@ public class StudentController {
 
     @GetMapping(path="/getAll")
     public @ResponseBody Iterable<Student> getAllStudents() {
-        return StudentRepository.findAll();
+        return studentRepo.findAll();
+    }
+
+    //use this as reference if I need better response bodies/codes later
+    @GetMapping(path="/getById")
+    public @ResponseBody ResponseEntity<Student> getStudentByID(@RequestParam int ID) {
+        return studentRepo.findById(ID)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

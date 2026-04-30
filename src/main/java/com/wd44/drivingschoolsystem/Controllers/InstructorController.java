@@ -1,10 +1,12 @@
 package com.wd44.drivingschoolsystem.Controllers;
 
 import com.wd44.drivingschoolsystem.DTOs.Instructor.InstructorCreateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Instructor.instructorUpdateDTO;
 import com.wd44.drivingschoolsystem.Models.Instructor;
 import com.wd44.drivingschoolsystem.Repos.InstructorRepo;
 import com.wd44.drivingschoolsystem.Services.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,11 @@ public class InstructorController {
         return instructorService.addNewInstructor(inst);
     }
 
+    @PutMapping(path="/update")
+    public @ResponseBody String updateInstructor(@RequestParam int ID, @RequestBody instructorUpdateDTO std) {
+        return instructorService.updateInstructor(ID, std);
+    }
+
     @DeleteMapping(path="/delete")
     public @ResponseBody String deleteInstructor(@RequestParam int ID) {
         return instructorService.deleteInstructor(ID);
@@ -30,5 +37,12 @@ public class InstructorController {
     @GetMapping(path="/getAll")
     public @ResponseBody Iterable<Instructor> getAllInstructors() {
         return instructorRepo.findAll();
+    }
+
+    @GetMapping(path="/getById")
+    public @ResponseBody ResponseEntity<Instructor> getInstructorByID(@RequestParam int ID) {
+        return instructorRepo.findById(ID)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
