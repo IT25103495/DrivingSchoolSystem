@@ -25,4 +25,10 @@ public class InstructorService {
         instructorRepo.save(inst);
         return "Saved";
     }
+
+    @Transactional
+    public @ResponseBody String deleteInstructor(int ID) {
+        instructorRepo.deleteById(ID);
+        return "Deleted";
+    }
 }

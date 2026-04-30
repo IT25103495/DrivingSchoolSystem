@@ -25,4 +25,10 @@ public class StudentService {
         studentRepo.save(std);
         return "Saved";
     }
+
+    @Transactional
+    public @ResponseBody String deleteStudent(int ID) {
+        studentRepo.deleteById(ID);
+        return "Deleted";
+    }
 }

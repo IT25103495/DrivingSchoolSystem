@@ -23,7 +23,12 @@ public class StudentController {
         return studentService.addNewStudent(std);
     }
 
-    @GetMapping(path="/all")
+    @DeleteMapping(path="/delete")
+    public @ResponseBody String deleteStudent(@RequestParam int ID) {
+        return studentService.deleteStudent(ID);
+    }
+
+    @GetMapping(path="/getAll")
     public @ResponseBody Iterable<Student> getAllStudents() {
         return StudentRepository.findAll();
     }
