@@ -1,16 +1,18 @@
 package com.wd44.drivingschoolsystem.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.wd44.drivingschoolsystem.Enums.vehicleTypes;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Lesson {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer lessonID;
-    private int lessonNumber;
+    //private int lessonNumber;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studentID")
@@ -20,8 +22,10 @@ public class Lesson {
     @JoinColumn(name = "instructorID")
     private Instructor instructor;
 
+    private vehicleTypes vehicleType;
+
     private LocalDate lessonDate;
-    private LocalDateTime lessonTime;
+//    private LocalTime lessonTime;
 
     private char grade;
     private String feedback;
@@ -29,9 +33,9 @@ public class Lesson {
     public Integer getLessonID() {
         return lessonID;
     }
-    public int getLessonNumber() {
-        return lessonNumber;
-    }
+//    public int getLessonNumber() {
+//        return lessonNumber;
+//    }
     public Student getStudent() {
         return student;
     }
@@ -41,22 +45,25 @@ public class Lesson {
     public LocalDate getLessonDate() {
         return lessonDate;
     }
-    public LocalDateTime getLessonTime() {
-        return lessonTime;
-    }
+//    public LocalTime getLessonTime() {
+//        return lessonTime;
+//    }
     public char getGrade() {
         return grade;
     }
     public String getFeedback() {
         return feedback;
     }
+    public String getVehicleType() {
+        return vehicleType.toString();
+    }
 
     public void setLessonID(Integer lessonID) {
         this.lessonID = lessonID;
     }
-    public void setLessonNumber(int lessonNumber) {
-        this.lessonNumber = lessonNumber;
-    }
+//    public void setLessonNumber(int lessonNumber) {
+//        this.lessonNumber = lessonNumber;
+//    }
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -66,13 +73,16 @@ public class Lesson {
     public void setLessonDate(LocalDate lessonDate) {
         this.lessonDate = lessonDate;
     }
-    public void setLessonTime(LocalDateTime lessonTime) {
-        this.lessonTime = lessonTime;
-    }
+//    public void setLessonTime(LocalTime lessonTime) {
+//        this.lessonTime = lessonTime;
+//    }
     public void setGrade(char grade) {
         this.grade = grade;
     }
     public void setFeedback(String feedback) {
         this.feedback = feedback;
+    }
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleTypes.valueOf(vehicleType.toUpperCase());
     }
 }
