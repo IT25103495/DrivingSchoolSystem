@@ -31,9 +31,11 @@ public class StudentService {
         return "Saved";
     }
 
+    //TODO: For the loveee of god make a mapper class pleaseeee (use @Mapper for fun shit)
+
     //Redundant code and wasted database lookup doing existsBy and then findBy, this was done to return a nice message besides 'internal server error'
     //See if there's a workaround
-    //Edit: Changed to return 404 not found, if that is hard to work with will change back or further modify
+    //FIXME: Changed to return 404 not found, if that is hard to work with will change back or further modify
     @Transactional
     public @ResponseBody String updateStudent(int ID, studentUpdateDTO _std) {
         Student std = studentRepo.findById(ID).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
