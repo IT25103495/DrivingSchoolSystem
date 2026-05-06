@@ -2,6 +2,7 @@ package com.wd44.drivingschoolsystem.Controllers;
 
 import com.wd44.drivingschoolsystem.DTOs.Lesson.lessonCreateDTO;
 //import com.wd44.drivingschoolsystem.DTOs.Lesson.lessonUpdateDTO;
+import com.wd44.drivingschoolsystem.DTOs.Lesson.lessonUpdateDTO;
 import com.wd44.drivingschoolsystem.Models.Lesson;
 import com.wd44.drivingschoolsystem.Repos.LessonRepo;
 import com.wd44.drivingschoolsystem.Services.LessonService;
@@ -25,10 +26,10 @@ public class LessonController {
         return lessonService.addNewLesson(les);
     }
 
-//    @PutMapping(path="/update")
-//    public @ResponseBody String updateLesson(@RequestParam int ID, @RequestBody lessonUpdateDTO les) {
-//        return lessonService.updateLesson(ID, les);
-//    }
+    @PutMapping(path="/update")
+    public @ResponseBody String updateLesson(@RequestParam int ID, @RequestBody lessonUpdateDTO les) {
+        return lessonService.updateLesson(ID, les);
+    }
 
     @DeleteMapping(path="/delete")
     public @ResponseBody String deleteLesson(@RequestParam int ID) {
