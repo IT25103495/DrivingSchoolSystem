@@ -1,9 +1,6 @@
 package com.wd44.drivingschoolsystem.Abstracts;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -13,15 +10,21 @@ public abstract class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected Integer ID;
 
+    @Column(name = "Full Name")
     protected String fullName;
 
+    @Column(name = "Date of Birth")
     protected LocalDate dob;
 
+    @Column(name = "Email")
     protected String email;
 
+    @Column(name = "Phone Number")
     protected String phoneNum;
 
+    @Column(name = "Username")
     protected String userName;
+    @Column(name = "Password")
     protected String password;
 
     public Integer getID() {

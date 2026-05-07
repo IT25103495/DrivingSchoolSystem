@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
-//FIXME: KILL THE PAYMENT TABLE!! RAHH!! I AIN'T MAKING THAT SHIT DAWGG!!!
+//FIXME: [2] KILL THE PAYMENT TABLE!! RAHH!! I AIN'T MAKING THAT SHIT DAWGG!!!
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity

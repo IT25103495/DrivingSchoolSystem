@@ -35,6 +35,7 @@ public class StudentController {
         return studentService.deleteStudent(ID);
     }
 
+    //FIXME: [3] Bro we can't be returning the username and password, make a student return DTO
     @GetMapping(path="/getAll")
     public @ResponseBody Iterable<Student> getAllStudents() {
         return studentRepo.findAll();

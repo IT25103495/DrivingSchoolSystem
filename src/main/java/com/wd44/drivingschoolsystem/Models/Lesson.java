@@ -22,12 +22,16 @@ public class Lesson {
     @JoinColumn(name = "instructorID")
     private Instructor instructor;
 
+    @Column(name = "Vehicle Type")
     private vehicleTypes vehicleType;
 
+    @Column(name = "Lesson Date")
     private LocalDate lessonDate;
 //    private LocalTime lessonTime;
 
+    @Column(name = "Grade")
     private char grade;
+    @Column(name = "Feedback")
     private String feedback;
 
     public Integer getLessonID() {

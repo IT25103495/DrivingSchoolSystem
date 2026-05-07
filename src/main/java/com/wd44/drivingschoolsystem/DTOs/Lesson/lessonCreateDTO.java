@@ -12,12 +12,12 @@ public class lessonCreateDTO {
     private Integer instructorID;
 
     private String vehicleType;
-    // TODO: Consider accepting type vehicleTypes bc it lowkey could still work, adds enum security at request level which is #Banger
+    // TODO: [2] Consider accepting type vehicleTypes bc it lowkey could still work, adds enum security at request level which is #Banger
 
     private LocalDate lessonDate;
     //private LocalTime lessonTime;
 
-    // TODO: LocalTime sucks balls so use LocalDateTime and split off date in frontend if I want time back
+    // TODO: [1] LocalTime sucks balls so use LocalDateTime and split off date in frontend if I want time back
 
 //    private char grade;
 //    private String feedback;

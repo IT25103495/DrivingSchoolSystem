@@ -38,7 +38,7 @@ public class LessonService {
         return "Saved";
     }
 
-    //TODO: Optionally, also add a DTO and method to only update the grade and feedback (maybe? or I could try to reuse it, idk)
+    //TODO: [2] Optionally, also add a DTO and method to only update the grade and feedback (maybe? or I could try to reuse it, idk)
 
     //Redundant code and wasted database lookup doing existsBy and then findBy, this was done to return a nice message besides 'internal server error'
     //See if there's a workaround
