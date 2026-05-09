@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7b0105a0-a531-4cca-be08-aeaeb29e5b1f" name="Changes" comment="Reformatted project structure&#10;Implemented basic frontend&#10;Added CORS to controllers&#10;Moved h2 database to suitable folder">
+      <change afterPath="$PROJECT_DIR$/frontend/src/Components/CardLists/StudentList.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Components/Cards/StudentCard.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Models/Instructor.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Models/Student.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Pages/TestPage.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/Services/APIService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Abstracts/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Abstracts/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Controllers/InstructorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Controllers/InstructorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Controllers/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Controllers/LessonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Controllers/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Instructor/InstructorCreateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Instructor/InstructorCreateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Instructor/instructorUpdateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Instructor/instructorUpdateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Lesson/lessonCreateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Lesson/lessonCreateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Lesson/lessonUpdateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Lesson/lessonUpdateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Student/studentCreateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Student/studentCreateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DTOs/Student/studentUpdateDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DTOs/Student/studentUpdateDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/DrivingSchoolSystemApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/DrivingSchoolSystemApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Enums/userType.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Enums/userType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Enums/vehicleTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Enums/vehicleTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Models/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Models/Instructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Models/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Models/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Models/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Models/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Models/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Repos/InstructorRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Repos/InstructorRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Repos/LessonRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Repos/LessonRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Repos/PaymentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Repos/PaymentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Repos/StudentRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Repos/StudentRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Services/InstructorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Services/InstructorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Services/LessonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Services/LessonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/wd44/drivingschoolsystem/Services/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/wd44/drivingschoolsystem/API/Services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/wd44/drivingschoolsystem/DrivingSchoolSystemApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/wd44/drivingschoolsystem/API/DrivingSchoolSystemApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;IT25103495&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/IT25103495/DrivingSchoolSystem.git&quot;,
+    &quot;accountId&quot;: &quot;bd1371f4-47c0-4e0e-b8a6-ac0364fc36d7&quot;
+  }
+}</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3CWSDAzyaBsfgRs9VV62P0omfjy" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.API.executor": "Run",
+    "Application.Default.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.DrivingSchoolSystemApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Luqma/Documents/University/Assignments/Y1S2/OOP (SE1020)/Group Project/DrivingSchoolSystem/frontend/src/models",
+    "nodejs_package_manager_path": "npm",
+    "npm.Frontend - Dev.executor": "Run",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "ts.external.directory.path": "D:\\Apps-Tools\\IntelliJ IDEA 2026.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem\frontend\src\models" />
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem\API\src" />
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem\src\main\java\com\wd44\drivingschoolsystem" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem\backend" />
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem" />
+      <recent name="C:\Users\Luqma\Documents\University\Assignments\Y1S2\OOP (SE1020)\Group Project\DrivingSchoolSystem\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.wd44.drivingschoolsystem.DTOs.Lesson" />
+      <recent name="com.wd44.drivingschoolsystem.Services" />
+      <recent name="com.wd44.drivingschoolsystem.Controllers" />
+      <recent name="com.wd44.drivingschoolsystem.Repos" />
+      <recent name="com.wd44.drivingschoolsystem.DTOs.Instructor" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.Frontend - Dev">
+    <configuration name="API" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="26" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.wd44.drivingschoolsystem.API.DrivingSchoolSystemApplication" />
+      <module name="DrivingSchoolSystem" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Both" type="CompoundRunConfigurationType">
+      <toRun name="API" type="Application" />
+      <toRun name="Frontend - Dev" type="js.build_tools.npm" />
+      <method v="2" />
+    </configuration>
+    <configuration name="DrivingSchoolSystemApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="DrivingSchoolSystem" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.wd44.drivingschoolsystem.DrivingSchoolSystemApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wd44.drivingschoolsystem.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Frontend - Dev" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.API" />
+      <item itemvalue="Compound.Both" />
+      <item itemvalue="npm.Frontend - Dev" />
+      <item itemvalue="Spring Boot.DrivingSchoolSystemApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.DrivingSchoolSystemApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b0105a0-a531-4cca-be08-aeaeb29e5b1f" name="Changes" comment="" />
+      <created>1776499713323</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1776499713323</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initial Commit of functional application">
+      <option name="closed" value="true" />
+      <created>1776501028786</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776501028786</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Removed redeundant access modifier">
+      <option name="closed" value="true" />
+      <created>1776501130850</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776501130850</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated application properties to new database">
+      <option name="closed" value="true" />
+      <created>1776502827541</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776502827541</updated>
+    </task>
+    <task id="LOCAL-00004" summary="- Fixed table generation&#10;- Added endpoints to the student controller&#10;- Added swagger to test endpoints">
+      <option name="closed" value="true" />
+      <created>1776955653179</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776955653180</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added h2 support (commented out)&#10;Added user abstract class that student and instructor extend">
+      <option name="closed" value="true" />
+      <created>1777443777866</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1777443777866</updated>
+    </task>
+    <task id="LOCAL-00006" summary="h2 enabled&#10;Improved controller and services&#10;Added instructor endpoints">
+      <option name="closed" value="true" />
+      <created>1777474790965</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1777474790965</updated>
+    </task>
+    <task id="LOCAL-00007" summary="added delete endpoints">
+      <option name="closed" value="true" />
+      <created>1777542999575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1777542999575</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added student update endpoint">
+      <option name="closed" value="true" />
+      <created>1777547599732</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1777547599733</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added all endpoints for Instructor and Student">
+      <option name="closed" value="true" />
+      <created>1777551721736</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777551721736</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added JSON Ignore properties">
+      <option name="closed" value="true" />
+      <created>1778005284145</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005284146</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added 'Lesson' controller, repo, service">
+      <option name="closed" value="true" />
+      <created>1778005321926</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005321926</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added basic payment model">
+      <option name="closed" value="true" />
+      <created>1778005336365</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005336365</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Added todo and fixme">
+      <option name="closed" value="true" />
+      <created>1778005362275</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005362275</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added enum for vehicle types">
+      <option name="closed" value="true" />
+      <created>1778005377011</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005377011</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Patched lessonCreateDTO">
+      <option name="closed" value="true" />
+      <created>1778005395433</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778005395433</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added lesson update endpoint">
+      <option name="closed" value="true" />
+      <created>1778082933473</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778082933473</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updated table column names">
+      <option name="closed" value="true" />
+      <created>1778144046942</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778144046942</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit of functional application" />
+    <MESSAGE value="Removed redeundant access modifier" />
+    <MESSAGE value="Updated application properties to new database" />
+    <MESSAGE value="- Fixed table generation&#10;- Added endpoints to the student controller&#10;- Added swagger to test endpoints" />
+    <MESSAGE value="Added h2 support (commented out)&#10;Added user abstract class that student and instructor extend" />
+    <MESSAGE value="h2 enabled&#10;Improved controller and services&#10;Added instructor endpoints" />
+    <MESSAGE value="added delete endpoints" />
+    <MESSAGE value="Added student update endpoint" />
+    <MESSAGE value="Added all endpoints for Instructor and Student" />
+    <MESSAGE value="Added JSON Ignore properties" />
+    <MESSAGE value="Added 'Lesson' controller, repo, service" />
+    <MESSAGE value="Added basic payment model" />
+    <MESSAGE value="Added todo and fixme" />
+    <MESSAGE value="Added enum for vehicle types" />
+    <MESSAGE value="Patched lessonCreateDTO" />
+    <MESSAGE value="Added lesson update endpoint" />
+    <MESSAGE value="Updated table column names" />
+    <MESSAGE value="Reformatted project structure&#10;Implemented basic frontend&#10;Added CORS to controllers&#10;Moved h2 database to suitable folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Reformatted project structure&#10;Implemented basic frontend&#10;Added CORS to controllers&#10;Moved h2 database to suitable folder" />
+  </component>
+</project>
