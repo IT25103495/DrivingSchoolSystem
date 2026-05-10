@@ -51,7 +51,10 @@ public class StudentService {
 
     @Transactional
     public @ResponseBody String deleteStudent(int ID) {
-        studentRepo.deleteById(ID);
-        return "Deleted";
+        if (studentRepo.existsById(ID)) {
+            studentRepo.deleteById(ID);
+            return "Deleted";
+        }
+        else return "Not Found";
     }
 }

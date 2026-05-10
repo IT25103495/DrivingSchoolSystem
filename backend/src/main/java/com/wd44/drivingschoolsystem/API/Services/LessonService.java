@@ -70,7 +70,10 @@ public class LessonService {
 
     @Transactional
     public @ResponseBody String deleteLesson(int ID) {
-        lessonRepo.deleteById(ID);
-        return "Deleted";
+        if (lessonRepo.existsById(ID)) {
+            lessonRepo.deleteById(ID);
+            return "Deleted";
+        }
+        else return "Not Found";
     }
 }

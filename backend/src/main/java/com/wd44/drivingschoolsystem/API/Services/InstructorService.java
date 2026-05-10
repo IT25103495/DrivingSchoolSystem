@@ -46,7 +46,10 @@ public class InstructorService {
 
     @Transactional
     public @ResponseBody String deleteInstructor(int ID) {
-        instructorRepo.deleteById(ID);
-        return "Deleted";
+        if (instructorRepo.existsById(ID)) {
+            instructorRepo.deleteById(ID);
+            return "Deleted";
+        }
+        else return "Not Found";
     }
 }
