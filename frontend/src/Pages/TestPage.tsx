@@ -18,10 +18,10 @@ const TestPage = () => {
             .then((res : any) => {
                 if(res?.data) {
                     setStudentValues(res?.data);
-                    setLoading(false)
                 }
                 setLoading(false)
-            }).catch(() => {
+            })
+            .catch(() => {
             toast.warning("Could not fetch students!")
             setLoading(false)
         })
@@ -36,7 +36,8 @@ const TestPage = () => {
                     toast.success("Student deleted")
                     getStudents();
                 }
-            }).catch(() => {
+            })
+            .catch(() => {
             toast.warning("Error while deleting student")
         })
     }
