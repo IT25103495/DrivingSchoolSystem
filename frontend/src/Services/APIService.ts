@@ -8,6 +8,10 @@ const SAPI = API + "student/"
 const IAPI = API + "instructor/"
 const LAPI = API + "lesson/"
 
+///////////////
+/// Student ///
+///////////////
+
 export const getStudentsAPI = async () => {
     try {
         return await axios.get<StudentGet[]>(SAPI + "getAll");
@@ -19,13 +23,23 @@ export const getStudentsAPI = async () => {
     }
 }
 
-export const getStudentByIdAPI = async () => {
+export const getStudentByIdAPI = async (ID: number) => {
     try {
-        return await axios.get<StudentGet[]>(SAPI + `getById?=${ID}`);
+        return await axios.get<StudentGet>(SAPI + `getById?=${ID}`);
     }
     catch (error)
     {
         toast.warning("Could not fetch student! (Service)")
+        console.log(error)
+    }
+}
+
+//TODO: Test if student post works
+export const postStudentAPI = async (student: StudentPost) => {
+    try {
+        return await axios.post<StudentPost>(SAPI + `add`, student);
+    } catch (error) {
+        toast.warning("Could not post student! (Service)")
         console.log(error)
     }
 }
@@ -41,7 +55,11 @@ export const deleteStudentAPI = async (ID: number) => {
     }
 }
 
-export const getInstructorsAPI = async (StudentID: number) => {
+//////////////////
+/// Instructor ///
+//////////////////
+
+export const getInstructorsAPI = async () => {
     try {
         return await axios.get<InstructorGet[]>(IAPI + "getAll");
     }
@@ -52,9 +70,9 @@ export const getInstructorsAPI = async (StudentID: number) => {
     }
 }
 
-export const getInstructorByIdAPI = async (StudentID: number) => {
+export const getInstructorByIdAPI = async (ID: number) => {
     try {
-        return await axios.get<InstructorGet[]>(IAPI + `getById?=${ID}`);
+        return await axios.get<InstructorGet>(IAPI + `getById?=${ID}`);
     }
     catch (error)
     {
@@ -70,6 +88,44 @@ export const deleteInstructorAPI = async (ID: number) => {
     catch (error)
     {
         toast.warning("Could not delete Instructor!")
+        console.log(error)
+    }
+}
+
+//////////////
+/// Lesson ///
+//////////////
+
+//TODO: test lesson API and see if the objects work
+export const getLessonsAPI = async () => {
+    try {
+        return await axios.get<LessonGet[]>(LAPI + "getAll");
+    }
+    catch (error)
+    {
+        toast.warning("Could not fetch lesson list! (Service)")
+        console.log(error)
+    }
+}
+
+export const getLessonByIdAPI = async (ID: number) => {
+    try {
+        return await axios.get<LessonGet>(LAPI + `getById?=${ID}`);
+    }
+    catch (error)
+    {
+        toast.warning("Could not fetch Lesson! (Service)")
+        console.log(error)
+    }
+}
+
+export const deleteLessonAPI = async (ID: number) => {
+    try {
+        return await axios.delete<LessonGet>(LAPI + `delete?ID=${ID}`);
+    }
+    catch (error)
+    {
+        toast.warning("Could not delete Lesson!")
         console.log(error)
     }
 }
