@@ -12,7 +12,7 @@ public class InstructorCreateDTO {
 
     protected String phoneNum;
 
-    protected String userName;
+    protected String username;
     protected String password;
 
     public String getFullName() {
@@ -47,12 +47,12 @@ public class InstructorCreateDTO {
 //        this.phoneNum = phoneNum;
 //    }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-//    public void setUserName(String userName) {
-//        this.userName = userName;
+//    public void setUsername(String username) {
+//        this.username = username;
 //    }
 
     public String getPassword() {

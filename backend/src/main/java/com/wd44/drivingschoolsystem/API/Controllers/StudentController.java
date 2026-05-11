@@ -5,6 +5,7 @@ import com.wd44.drivingschoolsystem.API.DTOs.Student.studentUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Student;
 import com.wd44.drivingschoolsystem.API.Repos.StudentRepo;
 import com.wd44.drivingschoolsystem.API.Services.StudentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @CrossOrigin
+@SecurityRequirement(name = "bearerAuth")
 @RequestMapping(path="/student")
 public class StudentController {
     @Autowired

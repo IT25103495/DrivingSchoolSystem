@@ -7,6 +7,7 @@ export type StudentGet = {
     password : string;
     ID : number;
 }
+//TODO: Remove username and password fields, get email from auth object
 
 export type StudentPost = {
     fullName: string;

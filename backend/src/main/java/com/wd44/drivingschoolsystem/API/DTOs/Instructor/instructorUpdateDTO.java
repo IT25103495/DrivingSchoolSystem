@@ -22,7 +22,7 @@ public class instructorUpdateDTO {
     protected String phoneNum = "noChange";
 
     @Schema(defaultValue = "noChange")
-    protected String userName = "noChange";
+    protected String username = "noChange";
     @Schema(defaultValue = "noChange")
     protected String password = "noChange";
 
@@ -58,12 +58,12 @@ public class instructorUpdateDTO {
 //        this.phoneNum = phoneNum;
 //    }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-//    public void setUserName(String userName) {
-//        this.userName = userName;
+//    public void setUsername(String username) {
+//        this.username = username;
 //    }
 
     public String getPassword() {

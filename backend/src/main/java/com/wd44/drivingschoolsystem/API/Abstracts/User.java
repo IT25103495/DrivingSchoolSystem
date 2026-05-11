@@ -1,5 +1,7 @@
 package com.wd44.drivingschoolsystem.API.Abstracts;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wd44.drivingschoolsystem.API.Models.AuthEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,16 +18,13 @@ public abstract class User {
     @Column(name = "Date of Birth")
     protected LocalDate dob;
 
-    @Column(name = "Email")
-    protected String email;
-
     @Column(name = "Phone Number")
     protected String phoneNum;
 
-    @Column(name = "Username")
-    protected String userName;
-    @Column(name = "Password")
-    protected String password;
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "authId", nullable = false)
+    private AuthEntity authEntity;
 
     public Integer getID() {
         return ID;
@@ -36,18 +35,10 @@ public abstract class User {
     public LocalDate getDob() {
         return dob;
     }
-    public String getEmail() {
-        return email;
-    }
     public String getPhoneNum() {
         return phoneNum;
     }
-    public String getUserName() {
-        return userName;
-    }
-    public String getPassword() {
-        return password;
-    }
+    public AuthEntity getAuthEntity() {return authEntity;}
 
     public void setID(Integer ID) {
         this.ID = ID;
@@ -58,16 +49,10 @@ public abstract class User {
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
-    public void setEmail(String email) {
-        this.email = email;
-    }
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAuthEntity(AuthEntity authEntity) {
+        this.authEntity = authEntity;
     }
 }
