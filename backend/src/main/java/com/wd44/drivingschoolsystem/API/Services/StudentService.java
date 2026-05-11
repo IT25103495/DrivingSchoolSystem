@@ -28,6 +28,7 @@ public class StudentService {
     @Autowired
     PasswordEncoder encoder;
 
+    //Register Student
     @Transactional
     public @ResponseBody String addNewStudent(studentCreateDTO _std) {
         Student std = new Student();
@@ -50,6 +51,7 @@ public class StudentService {
     //Redundant code and wasted database lookup doing existsBy and then findBy, this was done to return a nice message besides 'internal server error'
     //See if there's a workaround
     //FIXME: [2] Changed to return 404 not found, if that is hard to work with will change back or further modify
+    //Update Student
     @Transactional
     public @ResponseBody String updateStudent(int ID, studentUpdateDTO _std) {
         Student std = studentRepo.findById(ID).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
@@ -64,7 +66,7 @@ public class StudentService {
         studentRepo.save(std);
         return "Updated";
     }
-
+    //Delete Student
     @Transactional
     public @ResponseBody String deleteStudent(int ID) {
         if (studentRepo.existsById(ID)) {
