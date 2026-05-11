@@ -1,0 +1,32 @@
+import LessonCard from '../Cards/LessonCard';
+import type { LessonGet } from '../../Models/Lesson';
+import type { SyntheticEvent } from 'react';
+
+interface Props {
+    Lessons: LessonGet[];
+    onDelete: (e: SyntheticEvent) => void;
+};
+
+const LessonList = ({Lessons, onDelete} : Props) => {
+    return (
+        <div className="mt-18 2xl:mt-10">
+            <h2>Lesson List</h2>
+            {Lessons.length > 0? (
+                Lessons.map((res, index) => {
+                    return (
+                        <LessonCard
+                            Lesson={res}
+                            key={res.ID}
+                            onDelete={onDelete}
+                            index = {index}
+                        />
+                    );
+                })
+            ) : (
+                <h2>No lessons found (List).</h2>
+            )}
+        </div>
+    )
+}
+
+export default LessonList
