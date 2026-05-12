@@ -31,14 +31,17 @@ public class StudentService {
     //Register Student
     @Transactional
     public @ResponseBody String addNewStudent(studentCreateDTO _std) {
+
         Student std = new Student();
         AuthEntity auth = new AuthEntity();
+
         std.setFullName(_std.getFullName());
         std.setDob(_std.getDob());
         auth.setEmail(_std.getEmail());
         std.setPhoneNum(_std.getPhoneNum());
         auth.setUsername(_std.getUsername());
         auth.setPassword(encoder.encode(_std.getPassword()));
+
         std.setAuthEntity(auth);
         auth.setUserType(userType.STUDENT);
         authRepo.save(auth);
