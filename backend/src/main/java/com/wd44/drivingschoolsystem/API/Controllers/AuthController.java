@@ -25,6 +25,8 @@ public class AuthController {
         return authService.login(user);
     }
 
+    //TODO: Add register endpoint that calls addStudent from student service
+
     @PreAuthorize("hasRole('ROLE_STUDENT')")
     @GetMapping(path="/logintest")
     public @ResponseBody ResponseEntity<Object> testLogin() {
