@@ -1,5 +1,6 @@
 package com.wd44.drivingschoolsystem.API.Services;
 
+import com.wd44.drivingschoolsystem.API.DTOs.Payment.paymentSendDTO;
 import com.wd44.drivingschoolsystem.API.Enums.vehicleTypes;
 import com.wd44.drivingschoolsystem.API.Repos.StudentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,13 @@ public class PaymentService {
     /**
      * Validates card and amount only — nothing is persisted (no payment table).
      */
-    public Map<String, Object> processPayment(Integer studentId, String cardNumber, double amount) {
-        if (!studentRepo.existsById(studentId)) {
+    public Map<String, Object> processPayment(paymentSendDTO payment) {
+        if (!studentRepo.existsById(payment.getStudentID())) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found");
         }
 
-        String cleaned = cardNumber.replaceAll("[\\s-]", "");
-        boolean success = cleaned.length() == 16 && amount > 0;
+        String cleaned = payment.getCardNumber().replaceAll("[\\s-]", "");
+        boolean success = cleaned.length() == 16 && payment.getAmount() > 0;
 
         Map<String, Object> result = new HashMap<>();
         result.put("success", success);

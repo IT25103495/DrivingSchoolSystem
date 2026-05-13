@@ -1,5 +1,6 @@
 package com.wd44.drivingschoolsystem.API.Controllers;
 
+import com.wd44.drivingschoolsystem.API.DTOs.Payment.paymentSendDTO;
 import com.wd44.drivingschoolsystem.API.Services.PaymentService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,7 @@ public class PaymentController {
     }
 
     @PostMapping(path = "/process")
-    public @ResponseBody ResponseEntity<Map<String, Object>> process(@RequestBody Map<String, Object> body) {
-        Integer studentId = Integer.valueOf(body.get("studentId").toString());
-        String cardNumber = body.get("cardNumber").toString();
-        double amount = Double.parseDouble(body.get("amount").toString());
-        return ResponseEntity.ok(paymentService.processPayment(studentId, cardNumber, amount));
+    public @ResponseBody ResponseEntity<Map<String, Object>> process(@RequestBody paymentSendDTO payment) {
+        return ResponseEntity.ok(paymentService.processPayment(payment));
     }
 }
