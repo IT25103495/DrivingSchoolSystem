@@ -20,13 +20,16 @@ type RegisterFormsInputs = {
     dob: Date;
 }
 
+const maxYearGap = new Date();
+maxYearGap.setFullYear(maxYearGap.getFullYear() - 18);
+
 const validation = Yup.object().shape({
     email: Yup.string().required("Email Address is required"),
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
     phoneNum: Yup.string().required("Phone Number is required"),
     fullName: Yup.string().required("Full Name is required"),
-    dob: Yup.date().required("Date of Birth is required"),
+    dob: Yup.date().required("Date of Birth is required").max(maxYearGap, 'Must be at least 18 years old to register'),
 })
 
 const RegisterPage = (props: Props) => {
@@ -140,11 +143,11 @@ const RegisterPage = (props: Props) => {
                                     Date of Birth
                                 </label>
                                 <DatePicker selected={dob} onChange={(date) => setDob(date)}/>
+                                {errors.dob ? <p>{errors.dob.message}</p> : ""}
                                 <label className="flex flex-col text-gray-500 text-xs mt-2">
                                     Arrow Keys: Navigate<br/>
                                     PgUp/PgDown: Change Month<br/>
                                     Shift + PgUp/PgDown: Change Year</label>
-                                {errors.dob ? <p>{errors.dob.message}</p> : ""}
                             </div>
                             <button
                                 type="submit"
