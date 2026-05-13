@@ -6,6 +6,7 @@ import { type LessonGet, type LessonPost } from '../Models/Lesson'
 import * as API from '../Services/APIService';
 import StudentList from '../Components/CardLists/StudentList';
 import LessonList from '../Components/CardLists/LessonList';
+import axios from "axios"
 
 const TestPage = () => {
     const [studentValues, setStudentValues] = useState<StudentGet[]>([]);
@@ -117,7 +118,7 @@ const TestPage = () => {
                 </div>
             ) : (
                 <div>
-                    <h2>No students found (Test Page).</h2>
+                    <h2>No students found (Admin Page).</h2>
                 </div>
             )
             }

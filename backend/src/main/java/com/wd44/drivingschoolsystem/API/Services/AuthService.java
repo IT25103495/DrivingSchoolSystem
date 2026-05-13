@@ -5,8 +5,6 @@ import com.wd44.drivingschoolsystem.API.DTOs.Auth.TokenResponse;
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.authLoginDTO;
 import com.wd44.drivingschoolsystem.API.Models.AuthEntity;
 import com.wd44.drivingschoolsystem.API.Repos.AuthEntityRepository;
-import com.wd44.drivingschoolsystem.API.Repos.InstructorRepo;
-import com.wd44.drivingschoolsystem.API.Repos.StudentRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

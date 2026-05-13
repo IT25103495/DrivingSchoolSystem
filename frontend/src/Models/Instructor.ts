@@ -1,10 +1,7 @@
 export type InstructorGet = {
     fullName: string;
     dob : Date;
-    email : string;
     phoneNum : string;
-    userName : string;
-    password : string;
     ID : number;
 }
 
@@ -13,6 +10,6 @@ export type InstructorPost = {
     dob : Date;
     email : string;
     phoneNum : string;
-    userName : string;
+    username : string;
     password : string;
 }
