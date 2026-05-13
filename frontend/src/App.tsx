@@ -4,13 +4,15 @@ import TestPage from "./Pages/TestPage";
 import AdminPage from "./Pages/AdminPage";
 import LoginPage from "./Pages/LoginPage";
 import {UserProvider} from './Context/useAuth'
+import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import routes from "./Routes/Routes";
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-      <>
         <UserProvider>
-            <LoginPage/>
-            <AdminPage/>
+            <RouterProvider router={router} />
             <ToastContainer
               theme="dark"
               transition={Slide}
@@ -18,7 +20,6 @@ function App() {
               position='bottom-right'
             />
         </UserProvider>
-      </>
   )
 }
 

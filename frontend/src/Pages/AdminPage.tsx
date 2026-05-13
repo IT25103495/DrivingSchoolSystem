@@ -109,7 +109,7 @@ const TestPage = () => {
     }
 
     return (
-        <div className>
+        <div>
             {!Loading ? (
                 <div>
                     <StudentList Students={studentValues} onDelete={onStudentDelete}/>

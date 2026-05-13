@@ -37,10 +37,12 @@ public class PaymentService {
         String cleaned = payment.getCardNumber().replaceAll("[\\s-]", "");
         boolean success = cleaned.length() == 16 && payment.getAmount() > 0;
 
+        //TODO: modify paymentSendDTO to pass in vehicle type (string) and run calculate bill with it here, use during lesson registration, require success
+
         Map<String, Object> result = new HashMap<>();
         result.put("success", success);
         result.put("message", success
-                ? "Payment successful! You can now log in."
+                ? "Payment successful!"
                 : "Payment failed. Please check your card details.");
         return result;
     }

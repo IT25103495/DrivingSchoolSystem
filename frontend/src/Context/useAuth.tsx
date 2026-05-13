@@ -31,7 +31,7 @@ export const UserProvider = ({children} : Props) => {
         const token = localStorage.getItem("token"); //local storage is not secure for this
         if(user && token){
             setUser(JSON.parse(user));
-            setToken();
+            setToken(token);
             axios.defaults.headers.common["Authorization"] = ("Bearer " + token);
         }
         setIsReady(true)
@@ -56,7 +56,7 @@ export const UserProvider = ({children} : Props) => {
             if(res) {
                 localStorage.setItem("token", res?.data.token);
                 const userObj = {
-                    username: res?.data.username,
+                    username: username,
                 }
                 localStorage.setItem("user", JSON.stringify(userObj))
                 setToken(res?.data.token!);

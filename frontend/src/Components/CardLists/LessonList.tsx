@@ -16,7 +16,7 @@ const LessonList = ({Lessons, onDelete} : Props) => {
                     return (
                         <LessonCard
                             Lesson={res}
-                            key={res.ID}
+                            key={res.lessonID}
                             onDelete={onDelete}
                             index = {index}
                         />
