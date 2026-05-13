@@ -34,17 +34,13 @@ public class studentUpdateDTO {
         this.fullName = fullName;
     }
 
-    public LocalDate getDob() {
-        return dob;
-    }
+    public LocalDate getDob() {return dob;}
 
     public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() {return email;}
 
     public void setEmail(String email) {
         this.email = email;
