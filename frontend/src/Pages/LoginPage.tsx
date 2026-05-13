@@ -3,7 +3,7 @@ import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useAuth } from '../Context/useAuth';
 import { useForm } from 'react-hook-form';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 type Props = {}
 
@@ -26,7 +26,7 @@ const LoginPage = (props: Props) => {
     }
 
     return (
-        <section className="bg-gray-50">
+        <section className="">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full bg-white rounded-lg shadow md:mb-20 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -86,25 +86,25 @@ const LoginPage = (props: Props) => {
                                     </div>
                                 </div>
                                 <button
-                                    className="text-sm font-medium text-pink-500 hover:underline"
+                                    className="text-sm font-medium text-blue-500 hover:underline"
                                 >
                                     Forgot password?
                                 </button>
                             </div>
                             <button
                                 type="submit"
-                                className="w-full text-white text-l bg-pink-300 hover:opacity-70 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                                className="w-full text-white text-l bg-blue-300 hover:opacity-70 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                             >
                                 Sign in
                             </button>
                             <p className="text-sm font-light text-gray-500">
                                 Don’t have an account yet?{" "}
-                                {/*<Link*/}
-                                {/*    to="/register"*/}
-                                {/*    className="font-medium text-pink-500 hover:underline"*/}
-                                {/*>*/}
-                                {/*    Sign up*/}
-                                {/*</Link>*/}
+                                <Link
+                                    to="/register"
+                                    className="font-medium text-blue-500 hover:underline"
+                                >
+                                    Sign up
+                                </Link>
                             </p>
                         </form>
                     </div>

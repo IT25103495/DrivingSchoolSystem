@@ -92,6 +92,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
         // FIXME: ONLY KEEP USER AUTH OPEN TO PUBLIC IN PROD
         return path.equals("/auth/login") ||
+                path.equals("/auth/register") ||
                 path.equals("/student/add") ||
                 path.equals("/instructor/add") ||
                 path.startsWith("/api/admin") ||
