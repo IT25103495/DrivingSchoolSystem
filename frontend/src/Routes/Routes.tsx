@@ -3,6 +3,7 @@ import { UserProvider } from '../Context/useAuth'
 
 import Admin from '../Pages/AdminPage'
 import Login from '../Pages/LoginPage'
+import Register from '../Pages/RegisterPage'
 
 const routes: RouteObject[] = [
     {
@@ -12,6 +13,10 @@ const routes: RouteObject[] = [
     {
         path: '/login',
         element: <Login/>
+    },
+    {
+        path: '/register',
+        element: <Register/>
     },
     {
         path: '/admin',
