@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import type { UserProfile } from "../Models/User";
+import type { StudentPost } from "../Models/Student";
 import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../Services/AuthService";
 import { Bounce, Slide, toast } from "react-toastify";
@@ -9,7 +10,7 @@ import axios from "axios";
 type UserContextType = {
     user: UserProfile | null;
     token: string | null;
-    registerUser: (username: string, password: string) => void;
+    registerUser: (student: StudentPost) => void;
     loginUser: (username: string, password: string) => void;
     logout: () => void;
     isLoggedIn: () => boolean;
@@ -36,22 +37,10 @@ export const UserProvider = ({children} : Props) => {
         setIsReady(true)
     }, [])
 
-    const registerUser = async (username:string, password: string) => {
-        await registerAPI(username, password).then((res) => {
+    const registerUser = async (student: StudentPost) => {
+        await registerAPI(student).then((res) => {
             if(res) {
-                localStorage.setItem("token", res?.data.token);
-                const userObj = {
-                    userName: res?.data.userName,
-                }
-                localStorage.setItem("user", JSON.stringify(userObj))
-                setToken(res?.data.token!);
-                setUser(userObj!);
-                toast.success("Login Success", {
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    transition: Slide,
-                    position: "bottom-right",
-                })
+                loginUser(student.username, student.password)
                 // navigate("/search");
             }
         }).catch((e) => toast.warning("Server error occured", {

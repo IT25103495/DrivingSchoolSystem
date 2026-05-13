@@ -2,6 +2,7 @@ package com.wd44.drivingschoolsystem.API.Controllers;
 
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.TokenResponse;
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.authLoginDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Student.studentCreateDTO;
 import com.wd44.drivingschoolsystem.API.Services.AuthService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,17 @@ public class AuthController {
         return authService.login(user);
     }
 
-    //TODO: Add register endpoint that calls addStudent from student service
-
-    @PreAuthorize("hasRole('ROLE_STUDENT')")
-    @GetMapping(path="/logintest")
-    public @ResponseBody ResponseEntity<Object> testLogin() {
-
-        return ResponseEntity.ok(SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal());
+    @PostMapping(path="/register")
+    public @ResponseBody String register(@RequestBody studentCreateDTO user) {
+        return authService.register(user);
     }
+
+//    @PreAuthorize("hasRole('ROLE_STUDENT')")
+//    @GetMapping(path="/logintest")
+//    public @ResponseBody ResponseEntity<Object> testLogin() {
+//
+//        return ResponseEntity.ok(SecurityContextHolder.getContext()
+//                .getAuthentication().getPrincipal());
+//    }
 
 }

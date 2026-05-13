@@ -3,12 +3,17 @@ package com.wd44.drivingschoolsystem.API.Services;
 import com.wd44.drivingschoolsystem.API.Auth.JwtUtil;
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.TokenResponse;
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.authLoginDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Student.studentCreateDTO;
+import com.wd44.drivingschoolsystem.API.Enums.userType;
 import com.wd44.drivingschoolsystem.API.Models.AuthEntity;
+import com.wd44.drivingschoolsystem.API.Models.Student;
 import com.wd44.drivingschoolsystem.API.Repos.AuthEntityRepository;
+import com.wd44.drivingschoolsystem.API.Repos.StudentRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
@@ -16,6 +21,8 @@ import java.util.Optional;
 public class AuthService {
     @Autowired
     AuthEntityRepository authRepo;
+    @Autowired
+    StudentRepo studentRepo;
     @Autowired
     JwtUtil jwtUtil;
     @Autowired
@@ -40,5 +47,25 @@ public class AuthService {
         }
 
         return token;
+    }
+
+    @Transactional
+    public @ResponseBody String register(studentCreateDTO _std) {
+        Student std = new Student();
+        AuthEntity auth = new AuthEntity();
+
+        std.setFullName(_std.getFullName());
+        std.setDob(_std.getDob());
+        std.setPhoneNum(_std.getPhoneNum());
+        std.setAuthEntity(auth);
+
+        auth.setUsername(_std.getUsername());
+        auth.setPassword(encoder.encode(_std.getPassword()));
+        auth.setEmail(_std.getEmail());
+        auth.setUserType(userType.STUDENT);
+
+        authRepo.save(auth);
+        studentRepo.save(std);
+        return "Registered";
     }
 }
