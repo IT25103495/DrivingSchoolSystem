@@ -7,46 +7,30 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "payment")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer ID;
 
-    @Column(name = "amount", nullable = false)
+    @Column(name = "Amount", nullable = false)
     private double amount;
 
-    @Column(name = "paid", nullable = false)
-    private boolean paid;
-
-    @Column(name = "payment_date")
+    @Column(name = "Payment Date")
     private LocalDate paymentDate;
 
-
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name = "vehicle_type")
+    @Column(name = "Vehicle Type")
     private vehicleTypes vehicleType;
-
-    // Default constructor required by JPA
-    public Payment() {}
-
-    public Payment(double amount, boolean paid, LocalDate paymentDate, vehicleTypes vehicleType) {
-        this.amount = amount;
-        this.paid = paid;
-        this.paymentDate = paymentDate;
-        this.vehicleType = vehicleType;
-    }
 
     //  Getters and Setters
 
     public Integer getId() {
-        return id;
+        return ID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(Integer ID) {
+        this.ID = ID;
     }
 
     public double getAmount() {
