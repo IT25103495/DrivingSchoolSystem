@@ -12,8 +12,8 @@ public class instructorUpdateDTO {
     @Schema(defaultValue = "noChange")
     protected String fullName = "noChange";
 
-    @Schema(defaultValue = "1921-01-01")
-    protected LocalDate dob = LocalDate.parse("1921-01-01");
+    @Schema(defaultValue = "1920-01-01")
+    protected LocalDate dob = LocalDate.parse("1920-01-01");
 
     @Schema(defaultValue = "noChange")
     protected String email = "noChange";
@@ -30,46 +30,47 @@ public class instructorUpdateDTO {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-         this.fullName = fullName;
-     }
+//    public void setFullName(String fullName) {
+//        this.fullName = fullName;
+//    }
 
     public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(LocalDate dob) {
-       this.dob = dob;
-    }
+//    public void setDob(LocalDate dob) {
+//        this.dob = dob;
+//    }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-       this.email = email;
-    }
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
 
     public String getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(String phoneNum) {
-       this.phoneNum = phoneNum;
-    }
+//    public void setPhoneNum(String phoneNum) {
+//        this.phoneNum = phoneNum;
+//    }
 
     public String getUsername() {
         return username;
     }
-    public void setUsername(String username) {
-        this.username = username;
-    }
+
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 
     public String getPassword() {
         return password;
     }
 
-   public void setPassword(String password) {
-        this.password = password;
-    }
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 }
