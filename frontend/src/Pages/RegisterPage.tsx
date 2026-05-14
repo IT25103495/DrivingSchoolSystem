@@ -53,8 +53,8 @@ const RegisterPage = (props: Props) => {
             <section className="">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                     <div className="w-full bg-white rounded-lg shadow md:mb-20 md:mt-20 sm:max-w-md xl:p-0">
-                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl font-size-md font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                        <div className="px-6 pb-4 space-y-4 md:space-y-6">
+                            <h1 className="text-5xl font-size-md font-bold leading-tight tracking-tight text-gray-900">
                                 Create a new Account
                             </h1>
                             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleRegister)}>
