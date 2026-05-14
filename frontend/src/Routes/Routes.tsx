@@ -1,14 +1,19 @@
 import { type RouteObject, redirect } from 'react-router-dom'
-import { UserProvider } from '../Context/useAuth'
+import ProtectedRoute from './ProtectedRoute'
 
 import Admin from '../Pages/AdminPage'
 import Login from '../Pages/LoginPage'
 import Register from '../Pages/RegisterPage'
+import Home from '../Pages/HomePage'
 
 const routes: RouteObject[] = [
     {
         path: '/',
-        loader: () => redirect("/login")
+        loader: () => redirect("/home")
+    },
+    {
+        path: '/home',
+        element: <Home/>
     },
     {
         path: '/login',
@@ -20,7 +25,7 @@ const routes: RouteObject[] = [
     },
     {
         path: '/admin',
-        element: <Admin/>
+        element: <ProtectedRoute><Admin/></ProtectedRoute>
     }
 ]
 

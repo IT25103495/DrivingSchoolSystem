@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useAuth } from '../Context/useAuth';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import Navbar from '../Components/Navbar/Navbar'
 
 type Props = {}
 
@@ -18,7 +19,7 @@ const validation = Yup.object().shape({
 })
 
 const LoginPage = (props: Props) => {
-    const {loginUser} = useAuth();
+    const { loginUser } = useAuth();
     const { register, handleSubmit , formState: {errors}} = useForm<LoginFormsInputs>({ resolver: yupResolver(validation)})
 
     const handleLogin = (form: LoginFormsInputs) => {
@@ -26,6 +27,8 @@ const LoginPage = (props: Props) => {
     }
 
     return (
+        <>
+            <Navbar/>
         <section className="">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full bg-white rounded-lg shadow md:mb-20 sm:max-w-md xl:p-0">
@@ -66,31 +69,6 @@ const LoginPage = (props: Props) => {
                                 />
                                 {errors.password ? <p>{errors.password.message}</p> : ""}
                             </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input
-                                            id="remember"
-                                            aria-describedby="remember"
-                                            type="checkbox"
-                                            className="hover:ring-2 w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                                        />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label
-                                            htmlFor="remember"
-                                            className="text-gray-500 select-none"
-                                        >
-                                            Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                                <button
-                                    className="text-sm font-medium text-blue-500 hover:underline"
-                                >
-                                    Forgot password?
-                                </button>
-                            </div>
                             <button
                                 type="submit"
                                 className="w-full text-white text-l bg-blue-300 hover:opacity-70 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -111,6 +89,7 @@ const LoginPage = (props: Props) => {
                 </div>
             </div>
         </section>
+        </>
     )
 }
 

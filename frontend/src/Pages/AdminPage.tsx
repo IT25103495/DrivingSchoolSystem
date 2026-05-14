@@ -7,12 +7,15 @@ import * as API from '../Services/APIService';
 import StudentList from '../Components/CardLists/StudentList';
 import LessonList from '../Components/CardLists/LessonList';
 import axios from "axios"
+import { useAuth } from "../Context/useAuth";
+import Navbar from '../Components/Navbar/Navbar'
 
 const TestPage = () => {
     const [studentValues, setStudentValues] = useState<StudentGet[]>([]);
     const [instructorValues, setInstructorValues] = useState<InstructorGet[]>([]);
     const [lessonValues, setLessonValues] = useState<LessonGet[]>([]);
-    const [Loading, setLoading] = useState<Boolean>();
+    const [Loading, setLoading] = useState<Boolean>()
+    const {isLoggedIn, user, logout } = useAuth();
 
     useEffect(() => {
         setLoading(true)
@@ -110,6 +113,8 @@ const TestPage = () => {
 
     return (
         <div>
+            <Navbar/>
+            <div>
             {!Loading ? (
                 <div>
                     <StudentList Students={studentValues} onDelete={onStudentDelete}/>
@@ -122,6 +127,7 @@ const TestPage = () => {
                 </div>
             )
             }
+            </div>
         </div>
     )
 }
