@@ -2,45 +2,51 @@ package com.wd44.drivingschoolsystem.API.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wd44.drivingschoolsystem.API.Enums.vehicleTypes;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-//FIXME: [2] KILL THE PAYMENT TABLE!! RAHH!! I AIN'T MAKING THAT SHIT DAWGG!!!
-
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
+@Table(name = "payment")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Payment {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    protected Integer ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    protected vehicleTypes vehicleType;
+    @Column(name = "amount", nullable = false)
+    private double amount;
 
-    protected double amount;
+    @Column(name = "paid", nullable = false)
+    private boolean paid;
 
-    protected LocalDate paymentDate;
+    @Column(name = "payment_date")
+    private LocalDate paymentDate;
 
-    protected boolean paid;
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "vehicle_type")
+    private vehicleTypes vehicleType;
 
-    public Integer getID() {
-        return ID;
+    // Default constructor required by JPA
+    public Payment() {}
+
+    public Payment(double amount, boolean paid, LocalDate paymentDate, vehicleTypes vehicleType) {
+        this.amount = amount;
+        this.paid = paid;
+        this.paymentDate = paymentDate;
+        this.vehicleType = vehicleType;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    //  Getters and Setters
+
+    public Integer getId() {
+        return id;
     }
 
-    public String getVehicleType() {
-        return vehicleType.toString();
-    }
-
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleTypes.valueOf(vehicleType.toUpperCase());
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public double getAmount() {
@@ -59,11 +65,11 @@ public class Payment {
         this.paymentDate = paymentDate;
     }
 
-    public boolean isPaid() {
-        return paid;
+    public vehicleTypes getVehicleType() {
+        return vehicleType;
     }
 
-    public void setPaid(boolean paid) {
-        this.paid = paid;
+    public void setVehicleType(vehicleTypes vehicleType) {
+        this.vehicleType = vehicleType;
     }
 }
