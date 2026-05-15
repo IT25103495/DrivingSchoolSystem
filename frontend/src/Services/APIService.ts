@@ -108,6 +108,17 @@ export const getLessonsAPI = async () => {
     }
 }
 
+export const getLessonsByUserAPI = async (Username: string) => {
+    try {
+        return await axios.get<LessonGet[]>(LAPI + `getByUser?user=${Username}`);
+    }
+    catch (error)
+    {
+        toast.warning("Could not fetch lesson list! (Service, User)")
+        console.log(error)
+    }
+}
+
 export const getLessonByIdAPI = async (ID: number) => {
     try {
         return await axios.get<LessonGet>(LAPI + `getById?=${ID}`);

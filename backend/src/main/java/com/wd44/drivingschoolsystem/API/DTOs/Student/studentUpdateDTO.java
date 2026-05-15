@@ -5,6 +5,8 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
+
+
 public class studentUpdateDTO {
     @Id
     protected int ID;
@@ -73,4 +75,5 @@ public class studentUpdateDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

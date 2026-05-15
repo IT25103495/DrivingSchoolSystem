@@ -53,7 +53,7 @@ export const UserProvider = ({children} : Props) => {
 
     const loginUser = async (username:string, password: string) => {
         await loginAPI(username, password).then((res) => {
-            if(res) {
+            if(res && res?.data.success) {
                 localStorage.setItem("token", res?.data.token);
                 const userObj = {
                     username: username,
@@ -68,6 +68,14 @@ export const UserProvider = ({children} : Props) => {
                     position: "bottom-right",
                 })
                 // navigate("/search");
+            }
+            else {
+                toast.warning("Login Failed", {
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    transition: Bounce,
+                    position: "bottom-right",
+                })
             }
         }).catch((e) => toast.warning("Server error occured", {
                     hideProgressBar: true,

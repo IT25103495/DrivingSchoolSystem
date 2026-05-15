@@ -9,8 +9,7 @@ interface Props {
 
 const LessonList = ({Lessons, onDelete} : Props) => {
     return (
-        <div className="mt-18 2xl:mt-10">
-            <h2>Lesson List</h2>
+        <div className="w-full">
             {Lessons.length > 0? (
                 Lessons.map((res, index) => {
                     return (
