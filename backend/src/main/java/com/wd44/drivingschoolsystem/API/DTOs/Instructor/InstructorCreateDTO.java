@@ -19,12 +19,9 @@ public class InstructorCreateDTO {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-    public void setFullName(String fullName) {
-          this.fullName = fullName;
-    }
+//    public void setFullName(String fullName) {
+//          this.fullName = fullName;
+//    }
 
     public LocalDate getDob() {
         return dob;
