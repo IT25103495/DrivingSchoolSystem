@@ -5,6 +5,7 @@ import Admin from '../Pages/AdminPage'
 import Login from '../Pages/LoginPage'
 import Register from '../Pages/RegisterPage'
 import Home from '../Pages/HomePage'
+import Lessons from '../Pages/LessonView'
 
 const routes: RouteObject[] = [
     {
@@ -22,6 +23,10 @@ const routes: RouteObject[] = [
     {
         path: '/register',
         element: <Register/>
+    },
+    {
+        path: '/lessons',
+        element: <ProtectedRoute><Lessons/></ProtectedRoute>
     },
     {
         path: '/admin',
