@@ -21,7 +21,7 @@ const Navbar = (props: Props) => {
           <div className="text-sky-500">Logged in as: {user?.username}</div>
           <a
             onClick={logout}
-            className="px-8 py-3 font-bold rounded text-white bg-blue-300 hover:opacity-70"
+            className="select-none px-8 py-3 font-bold rounded text-white bg-blue-300 hover:opacity-70"
           >
             Logout
           </a>
