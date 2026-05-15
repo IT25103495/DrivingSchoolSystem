@@ -51,16 +51,5 @@ public class LessonController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    
-   public class AuthEntity implements UserDetails {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Column(nullable = false)
-    private String email;
-
-    @Column(unique = true, nullable = false)
 
 }
