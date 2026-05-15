@@ -2,6 +2,7 @@ package com.wd44.drivingschoolsystem.API.Controllers;
 
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.TokenResponse;
 import com.wd44.drivingschoolsystem.API.DTOs.Auth.authLoginDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Student.studentCreateDTO;
 import com.wd44.drivingschoolsystem.API.Services.AuthService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
