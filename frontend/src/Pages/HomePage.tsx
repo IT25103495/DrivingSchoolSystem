@@ -2,6 +2,7 @@ import Navbar from '../Components/Navbar/Navbar'
 import { Link } from 'react-router-dom';
 import { LuClipboardPen } from "react-icons/lu";
 import { CiLogin } from "react-icons/ci";
+import { CiViewList } from "react-icons/ci";
 
 const HomePage = () => {
     return (
@@ -23,6 +24,13 @@ const HomePage = () => {
                     >
                         <CiLogin className="size-10 mr-2 -ml-2"/>
                         Log in
+                    </Link>
+                    <Link
+                        to="/lessons"
+                        className="w-full py-3 font-bold text-xl rounded shadow-lg text-white bg-blue-300 hover:opacity-70 flex justify-center items-center"
+                    >
+                        <CiViewList className="size-10 mr-2 -ml-2"/>
+                        View Lessons
                     </Link>
                 </div>
             </div>

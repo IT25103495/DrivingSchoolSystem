@@ -9,9 +9,9 @@ const Navbar = (props: Props) => {
   const {isLoggedIn, user, logout } = useAuth();
 
   return (
-    <nav className="relative container mx-auto p-5 shadow-md w-full bg-white">
+    <nav className="relative mx-auto p-5 shadow-md w-full bg-white">
       <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-20">
+        <div className="flex items-center space-x-20 hover:shadow-md hover:outline-1 hover:outline-blue-200">
           <Link to="/home">
             <img src={logo} alt="" />
           </Link>
