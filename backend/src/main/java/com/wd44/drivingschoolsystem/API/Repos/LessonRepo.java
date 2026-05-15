@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface LessonRepo extends CrudRepository<Lesson, Integer> {
-
+    Iterable<Lesson> findByStudent_authEntity_Username_OrderByLessonDate(String username);
 }

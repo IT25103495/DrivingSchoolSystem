@@ -14,11 +14,11 @@ public class Lesson {
     private Integer lessonID;
     //private int lessonNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "studentID")
     private Student student;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructorID")
     private Instructor instructor;
 

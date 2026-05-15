@@ -51,4 +51,9 @@ public class LessonController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping(path="/getByUser")
+    public @ResponseBody Iterable<Lesson> getLessonsByUser(@RequestParam String user) {
+        return lessonRepo.findByStudent_authEntity_Username_OrderByLessonDate(user);
+    }
 }
