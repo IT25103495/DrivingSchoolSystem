@@ -1,7 +1,5 @@
 package com.wd44.drivingschoolsystem.API.Services;
 
-import com.wd44.drivingschoolsystem.API.DTOs.Student.studentCreateDTO;
-import com.wd44.drivingschoolsystem.API.DTOs.Student.studentUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Enums.userType;
 import com.wd44.drivingschoolsystem.API.Models.AuthEntity;
 import com.wd44.drivingschoolsystem.API.Models.Student;
