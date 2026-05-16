@@ -2,6 +2,7 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import type {StudentGet} from "../Models/Student.ts";
 import type {InstructorGet} from "../Models/Instructor.ts";
+import type {LessonAutoRegisterPost, LessonGet} from "../Models/Lesson";
 
 const API ="http://localhost:8080/"
 const SAPI = API + "student/"
@@ -126,6 +127,21 @@ export const getLessonByIdAPI = async (ID: number) => {
     catch (error)
     {
         toast.warning("Could not fetch Lesson! (Service)")
+        console.log(error)
+    }
+}
+
+export const autoRegisterLessonAPI = async (vehicleType:string, firstDate:Date, username:string) => {
+    try {
+        return await axios.post<LessonAutoRegisterPost>(LAPI + 'autoRegister', {
+            vehicleType: vehicleType,
+            firstDate: firstDate,
+            username: username
+        })
+    }
+    catch (error)
+    {
+        toast.warning("Could not register Lesson! (Service)")
         console.log(error)
     }
 }

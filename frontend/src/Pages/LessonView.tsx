@@ -19,7 +19,6 @@ const LessonView = () => {
     }, [])
 
     const getLessons = () => {
-        console.log(user.username)
         API.getLessonsByUserAPI(user.username)
             .then((res : any) => {
                 if(res?.data) {
@@ -37,7 +36,7 @@ const LessonView = () => {
         <div className="w-screen justify-center flex flex-col items-center space-y-6">
             <Navbar/>
             <h1 className="p-4 pt-2 shadow-lg bg-white rounded-lg w-fit flex justify-center text-blue-400 font-extrabold text-shadow-sm text-6xl">UPCOMING LESSONS</h1>
-            <div className="w-full flex flex-col bg-white shadow-lg h-175 mt-8 items-left justify-start">
+            <div className="w-full flex flex-col bg-white shadow-lg flex-grow min-h-screen mt-8 items-left justify-start">
                 <div className="flex flex-col items-start text-back space-y-7 mt-5 ml-5 w-screen">
                     <LessonList Lessons={lessonValues}/>
                 </div>

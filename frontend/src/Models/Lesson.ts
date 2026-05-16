@@ -14,3 +14,9 @@ export type LessonPost = {
     vehicleType: string;
     lessonDate: Date
 }
+
+export type LessonAutoRegisterPost = {
+    vehicleType: string;
+    firstDate: Date;
+    username: string;
+}

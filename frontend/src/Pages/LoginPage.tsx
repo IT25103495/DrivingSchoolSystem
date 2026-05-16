@@ -20,15 +20,11 @@ const validation = Yup.object().shape({
 
 const LoginPage = (props: Props) => {
     const navigate = useNavigate();
-    const { loginUser, isLoggedIn } = useAuth();
+    const { loginUser } = useAuth();
     const { register, handleSubmit , formState: {errors}} = useForm<LoginFormsInputs>({ resolver: yupResolver(validation)})
 
     const handleLogin = (form: LoginFormsInputs) => {
         loginUser(form.username, form.password)
-
-        if (isLoggedIn()) {
-            navigate("/home")
-        }
     }
 
     return (
