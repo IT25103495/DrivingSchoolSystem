@@ -44,6 +44,7 @@ const HomePage = () => {
                         :
                         <Link
                             to="/lessons"
+                            reloadDocument
                             className="w-full py-3 font-bold text-xl rounded shadow-lg text-white bg-blue-300 hover:opacity-70 flex justify-center items-center"
                         >
                             <CiViewList className="size-10 mr-2 -ml-2"/>
@@ -53,6 +54,7 @@ const HomePage = () => {
                     { (user?.role == "STUDENT") ?
                         <Link
                             to="/regLesson"
+                            reloadDocument
                             className="w-full py-3 font-bold text-xl rounded shadow-lg text-white bg-blue-300 hover:opacity-70 flex justify-center items-center"
                         >
                             <CiViewList className="size-10 mr-2 -ml-2"/>
