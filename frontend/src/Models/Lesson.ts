@@ -20,3 +20,9 @@ export type LessonAutoRegisterPost = {
     firstDate: Date;
     username: string;
 }
+
+export type gradePost = {
+    ID: number;
+    grade: string;
+    feedback: string;
+}

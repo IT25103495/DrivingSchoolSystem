@@ -1,8 +1,8 @@
 import axios from "axios";
 import {toast} from "react-toastify";
 import type {StudentGet} from "../Models/Student.ts";
-import type {InstructorGet} from "../Models/Instructor.ts";
-import type {LessonAutoRegisterPost, LessonGet} from "../Models/Lesson";
+import type {InstructorGet, InstructorPost} from "../Models/Instructor.ts";
+import type {LessonAutoRegisterPost, LessonGet, gradePost} from "../Models/Lesson";
 
 const API ="http://localhost:8080/"
 const SAPI = API + "student/"
@@ -60,6 +60,15 @@ export const deleteStudentAPI = async (ID: number) => {
 /// Instructor ///
 //////////////////
 
+export const postInstructorAPI = async (instructor: InstructorPost) => {
+    try {
+        return await axios.post<InstructorPost>(IAPI + `add`, instructor);
+    } catch (error) {
+        toast.warning("Could not post instructor! (Service)")
+        console.log(error)
+    }
+}
+
 export const getInstructorsAPI = async () => {
     try {
         return await axios.get<InstructorGet[]>(IAPI + "getAll");
@@ -116,6 +125,32 @@ export const getLessonsByUserAPI = async (Username: string) => {
     catch (error)
     {
         toast.warning("Could not fetch lesson list! (Service, User)")
+        console.log(error)
+    }
+}
+
+export const getLessonsByInstructorAPI = async (Username: string) => {
+    try {
+        return await axios.get<LessonGet[]>(LAPI + `getByInstructor?user=${Username}`);
+    }
+    catch (error)
+    {
+        toast.warning("Could not fetch lesson list! (Service, Instructor)")
+        console.log(error)
+    }
+}
+
+export const gradeLessonAPI = async (ID: number, grade: string, feedback: string) => {
+    try {
+        return await axios.put<gradePost>(LAPI + 'grade', {
+            id: ID,
+            grade: grade,
+            feedback: feedback
+        })
+    }
+    catch (error)
+    {
+        toast.warning("Could not apply grading! (Service)")
         console.log(error)
     }
 }

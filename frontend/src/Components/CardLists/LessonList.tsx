@@ -5,9 +5,10 @@ import type { SyntheticEvent } from 'react';
 interface Props {
     Lessons: LessonGet[];
     onDelete: (e: SyntheticEvent) => void;
+    showID : boolean
 };
 
-const LessonList = ({Lessons, onDelete} : Props) => {
+const LessonList = ({Lessons, onDelete, showID} : Props) => {
     return (
         <div className="w-full">
             {Lessons.length > 0? (
@@ -18,6 +19,7 @@ const LessonList = ({Lessons, onDelete} : Props) => {
                             key={res.lessonID}
                             onDelete={onDelete}
                             index = {index}
+                            showID = {showID}
                         />
                     );
                 })

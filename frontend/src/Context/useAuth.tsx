@@ -1,11 +1,13 @@
 import { createContext, useEffect, useState } from "react";
 import type { UserProfile } from "../Models/User";
 import type { StudentPost } from "../Models/Student";
+import type { InstructorPost } from "../Models/Instructor"
 import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../Services/AuthService";
 import { Bounce, Slide, toast } from "react-toastify";
 import React from "react";
 import axios from "axios";
+import {postInstructorAPI} from "../Services/APIService";
 
 type UserContextType = {
     user: UserProfile | null;
@@ -51,12 +53,23 @@ export const UserProvider = ({children} : Props) => {
                 }))
     }
 
+    const registerInstructor = async (instructor: InstructorPost) => {
+        await postInstructorAPI(instructor).then((res) => {
+        }).catch((e) => toast.warning("Server error occured", {
+            hideProgressBar: true,
+            closeOnClick: true,
+            transition: Bounce,
+            position: "bottom-right",
+        }))
+    }
+
     const loginUser = async (username:string, password: string) => {
         await loginAPI(username, password).then((res) => {
             if(res && res?.data.success) {
                 localStorage.setItem("token", res?.data.token);
                 const userObj = {
                     username: username,
+                    role: res?.data.role
                 }
                 localStorage.setItem("user", JSON.stringify(userObj))
                 setToken(res?.data.token!);
@@ -98,7 +111,7 @@ export const UserProvider = ({children} : Props) => {
     }
 
     return (
-        <UserContext.Provider value={{loginUser, user, token, logout, isLoggedIn, registerUser}}>
+        <UserContext.Provider value={{loginUser, user, token, logout, isLoggedIn, registerUser, registerInstructor}}>
             {isReady ? children : null}
         </UserContext.Provider>
     )

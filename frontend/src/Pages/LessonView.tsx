@@ -7,13 +7,17 @@ import LessonList from "../Components/CardLists/LessonList";
 import * as API from "../Services/APIService";
 import type {LessonGet} from "../Models/Lesson";
 import {useAuth} from "../Context/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const LessonView = () => {
     const [lessonValues, setLessonValues] = useState<LessonGet[]>([]);
     const [Loading, setLoading] = useState<Boolean>()
     const {user} = useAuth();
+    const navigate = useNavigate()
 
     useEffect(() => {
+        if (user?.role == "INSTRUCTOR")
+            navigate("/lessonsInstructor")
         setLoading(true)
         getLessons()
     }, [])
