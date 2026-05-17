@@ -37,9 +37,6 @@ public class Lesson {
     public Integer getLessonID() {
         return lessonID;
     }
-//    public int getLessonNumber() {
-//        return lessonNumber;
-//    }
     public Student getStudent() {
         return student;
     }
@@ -49,9 +46,6 @@ public class Lesson {
     public LocalDate getLessonDate() {
         return lessonDate;
     }
-//    public LocalTime getLessonTime() {
-//        return lessonTime;
-//    }
     public char getGrade() {
         return grade;
     }
@@ -65,9 +59,6 @@ public class Lesson {
     public void setLessonID(Integer lessonID) {
         this.lessonID = lessonID;
     }
-//    public void setLessonNumber(int lessonNumber) {
-//        this.lessonNumber = lessonNumber;
-//    }
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -77,9 +68,6 @@ public class Lesson {
     public void setLessonDate(LocalDate lessonDate) {
         this.lessonDate = lessonDate;
     }
-//    public void setLessonTime(LocalTime lessonTime) {
-//        this.lessonTime = lessonTime;
-//    }
     public void setGrade(char grade) {
         this.grade = grade;
     }
