@@ -28,7 +28,9 @@ const validation = Yup.object().shape({
     email: Yup.string().required("Email Address is required"),
     username: Yup.string().required("Username is required"),
     password: Yup.string().required("Password is required"),
-    phoneNum: Yup.string().required("Phone Number is required"),
+    phoneNum: Yup.string()
+        .required("Phone Number is required")
+        .matches(/^\d{10}$/, "Phone number must be exactly 10 digits"),
     fullName: Yup.string().required("Full Name is required"),
     dob: Yup.date().required("Date of Birth is required").max(maxYearGap, 'Must be at least 18 years old to register'),
 })
@@ -98,13 +100,15 @@ const RegisterPage = (props: Props) => {
                                         Phone Number
                                     </label>
                                     <input
-                                        type="text"
+                                        type="tel"
                                         id="phoneNum"
+                                        maxLength={10}
+                                        inputMode="numeric"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                        placeholder="XXX XXX XXXX"
+                                        placeholder="0712345678"
                                         {...register("phoneNum")}
                                     />
-                                    {errors.username ? <p>{errors.username.message}</p> : ""}
+                                    {errors.phoneNum ? <p>{errors.phoneNum.message}</p> : ""}
                                 </div>
                                 <div>
                                     <label
