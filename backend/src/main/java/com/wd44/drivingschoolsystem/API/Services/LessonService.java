@@ -1,6 +1,8 @@
 package com.wd44.drivingschoolsystem.API.Services;
 
+import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonAutoRegisterDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonCreateDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonGradingDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Instructor;
 import com.wd44.drivingschoolsystem.API.Models.Lesson;
@@ -14,6 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+import java.util.Random;
+import java.util.stream.StreamSupport;
 
 @Service
 public class LessonService {
@@ -32,10 +38,46 @@ public class LessonService {
         les.setStudent(std);
         les.setInstructor(inst);
         les.setLessonDate(_les.getLessonDate());
-//        les.setLessonTime(_les.getLessonTime());
         les.setVehicleType(_les.getVehicleType());
         lessonRepo.save(les);
         return "Saved";
+    }
+
+    @Transactional
+    public @ResponseBody String autoRegister(lessonAutoRegisterDTO _les) {
+        Lesson les = new Lesson();
+        Student std = studentRepo.findByAuthEntity_Username(_les.getUsername());
+        les.setStudent(std);
+
+        Iterable<Instructor> instructors = instructorRepo.findAll();
+        List<Instructor> instructorsList = StreamSupport.stream(instructors.spliterator(), false).toList();
+        Random rand = new Random();
+        Instructor inst = instructorsList.get(rand.nextInt(0, instructorsList.size()));
+        les.setInstructor(inst);
+
+        les.setLessonDate(_les.getFirstDate());
+        les.setVehicleType(_les.getVehicleType());
+
+        lessonRepo.save(les);
+
+        Lesson les2 = cloneLesson(les);
+        les2.setLessonDate(_les.getFirstDate().plusWeeks(1));
+        lessonRepo.save(les2);
+
+        Lesson les3 = cloneLesson(les);
+        les3.setLessonDate(_les.getFirstDate().plusWeeks(2));
+        lessonRepo.save(les3);
+
+        return "Saved";
+    }
+
+    private Lesson cloneLesson(Lesson _les) {
+        Lesson les = new Lesson();
+        les.setLessonDate(_les.getLessonDate());
+        les.setStudent(_les.getStudent());
+        les.setInstructor(_les.getInstructor());
+        les.setVehicleType(_les.getVehicleType());
+        return les;
     }
 
     //TODO: [2] Optionally, also add a DTO and method to only update the grade and feedback (maybe? or I could try to reuse it, idk)
@@ -64,6 +106,20 @@ public class LessonService {
             les.setGrade(_les.getGrade());
         if (!_les.getFeedback().equals("noChange"))
             les.setFeedback(_les.getFeedback());
+        lessonRepo.save(les);
+        return "Updated";
+    }
+
+    @Transactional
+    public @ResponseBody String gradeLesson(lessonGradingDTO _les) {
+        Lesson les = lessonRepo.findById(_les.getId()).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lesson Not Found!"));
+
+        if (_les.getGrade() != 'Z')
+            les.setGrade(_les.getGrade());
+
+        if (!_les.getFeedback().equals("noChange"))
+            les.setFeedback(_les.getFeedback());
+
         lessonRepo.save(les);
         return "Updated";
     }

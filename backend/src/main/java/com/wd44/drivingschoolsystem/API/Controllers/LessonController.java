@@ -1,7 +1,9 @@
 package com.wd44.drivingschoolsystem.API.Controllers;
 
+import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonAutoRegisterDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonCreateDTO;
 //import com.wd44.drivingschoolsystem.DTOs.Lesson.lessonUpdateDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonGradingDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Lesson.lessonUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Lesson;
 import com.wd44.drivingschoolsystem.API.Repos.LessonRepo;
@@ -27,6 +29,11 @@ public class LessonController {
     @PostMapping(path="/add") // Map ONLY POST Requests
     public @ResponseBody String addNewLesson(@RequestBody lessonCreateDTO les) {
         return lessonService.addNewLesson(les);
+    }
+
+    @PostMapping(path="/autoRegister") // Map ONLY POST Requests
+    public @ResponseBody String autoRegister(@RequestBody lessonAutoRegisterDTO les) {
+        return lessonService.autoRegister(les);
     }
 
     @PutMapping(path="/update")
@@ -56,4 +63,15 @@ public class LessonController {
     public @ResponseBody Iterable<Lesson> getLessonsByUser(@RequestParam String user) {
         return lessonRepo.findByStudent_authEntity_Username_OrderByLessonDate(user);
     }
+
+    @GetMapping(path="/getByInstructor")
+    public @ResponseBody Iterable<Lesson> getLessonsByInstructor(@RequestParam String user) {
+        return lessonRepo.findByInstructor_authEntity_Username_OrderByLessonDate(user);
+    }
+
+    @PutMapping(path="/grade")
+    public @ResponseBody String gradeLesson(@RequestBody lessonGradingDTO les) {
+        return lessonService.gradeLesson(les);
+    }
+
 }
