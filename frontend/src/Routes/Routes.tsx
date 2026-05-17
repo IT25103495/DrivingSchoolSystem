@@ -1,6 +1,5 @@
 import { type RouteObject, redirect } from 'react-router-dom'
 import ProtectedRoute from './ProtectedRoute'
-import { useAuth } from '../Context/useAuth';
 
 import Admin from '../Pages/AdminPage'
 import Login from '../Pages/LoginPage'
@@ -9,6 +8,7 @@ import Home from '../Pages/HomePage'
 import Lessons from '../Pages/LessonView'
 import LessonsInstructor from '../Pages/LessonViewInstructor'
 import RegLesson from '../Pages/LessonRegister'
+import Payment from '../Pages/PaymentPage'
 
 const routes: RouteObject[] = [
     {
@@ -36,12 +36,16 @@ const routes: RouteObject[] = [
         element: <ProtectedRoute><LessonsInstructor/></ProtectedRoute>
     },
     {
-      path: '/regLesson',
+        path: '/regLesson',
         element: <ProtectedRoute><RegLesson/></ProtectedRoute>
     },
     {
         path: '/admin',
         element: <ProtectedRoute><Admin/></ProtectedRoute>
+    },
+    {
+        path: '/payment',
+        element: <ProtectedRoute><Payment/></ProtectedRoute>
     }
 ]
 
