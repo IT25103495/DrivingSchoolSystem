@@ -7,8 +7,4 @@ import jakarta.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Instructor extends User {
-
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
-    //private List<Student> studentList;
-
 }
