@@ -55,6 +55,9 @@ export const UserProvider = ({children} : Props) => {
 
     const registerInstructor = async (instructor: InstructorPost) => {
         await postInstructorAPI(instructor).then((res) => {
+            if (res) {
+                toast.success("Instructor Registered")
+            }
         }).catch((e) => toast.warning("Server error occured", {
             hideProgressBar: true,
             closeOnClick: true,
