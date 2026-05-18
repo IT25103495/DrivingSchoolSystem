@@ -15,7 +15,7 @@ public class lessonCreateDTO {
     private LocalDate lessonDate;
     //private LocalTime lessonTime;
 
-    // TODO: [1] LocalTime sucks balls so use LocalDateTime and split off date in frontend if I want time back
+    // TODO: [1] LocalTime sucks so use LocalDateTime and split off date in frontend if I want time back
 
 //    private char grade;
 //    private String feedback;
