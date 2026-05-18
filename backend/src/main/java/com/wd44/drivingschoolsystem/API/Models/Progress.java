@@ -13,22 +13,22 @@ public class Progress {
     private Integer progressID;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "studentID")
+    @JoinColumn(name = "STUDENT_ID")
     private Student student;
 
-    @Column(name = "Total Lessons")
+    @Column(name = "Total_Lessons")
     private int totalLessons;
 
-    @Column(name = "Completed Lessons")
+    @Column(name = "Completed_Lessons")
     private int completedLessons;
 
-    @Column(name = "Pending Lessons")
+    @Column(name = "Pending_Lessons")
     private int pendingLessons;
 
-    @Column(name = "Progress Percentage")
+    @Column(name = "Progress_Percentage")
     private int progressPercentage;
 
-    @Column(name = "Last Updated")
+    @Column(name = "Last_Updated")
     private LocalDate lastUpdated;
 
     // Getters

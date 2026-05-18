@@ -1,6 +1,8 @@
 package com.wd44.drivingschoolsystem.API.Controllers;
 
+import com.wd44.drivingschoolsystem.API.DTOs.ApiResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressCreateDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Progress;
 import com.wd44.drivingschoolsystem.API.Services.ProgressService;
@@ -23,32 +25,41 @@ public class ProgressController {
     private ProgressService progressService;
 
     // CREATE - POST /progress/add
-    @PostMapping(path = "/add")
-    public @ResponseBody String addProgress(@RequestBody ProgressCreateDTO progress) {
-        return progressService.addProgress(progress);
+    @PostMapping("/add")
+    public ResponseEntity<ApiResponseDTO<ProgressResponseDTO>> addProgress(
+            @RequestBody ProgressCreateDTO dto) {
+
+        return ResponseEntity.ok(progressService.addProgress(dto));
     }
 
     // READ - GET /progress/getByStudent?ID=1
-    @GetMapping(path = "/getByStudent")
-    public @ResponseBody ResponseEntity<Progress> getProgressByStudent(@RequestParam Integer ID) {
-        return ResponseEntity.ok(progressService.getProgressByStudentId(ID));
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<ApiResponseDTO<ProgressResponseDTO>> getByStudent(
+            @PathVariable Integer studentId) {
+
+        return ResponseEntity.ok(progressService.getProgressByStudentId(studentId));
     }
 
     // READ - GET /progress/getAll
-    @GetMapping(path = "/getAll")
-    public @ResponseBody Iterable<Progress> getAllStudentsProgress() {
-        return progressService.getAllStudentsProgress();
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponseDTO<List<ProgressResponseDTO>>> getAll() {
+
+        return ResponseEntity.ok(progressService.getAllStudentsProgress());
     }
 
     // UPDATE - PUT /progress/update?ID=1
-    @PutMapping(path = "/update")
-    public @ResponseBody String updateProgress(@RequestParam int ID, @RequestBody ProgressUpdateDTO progress) {
-        return progressService.updateProgress(ID, progress);
+    @PutMapping("/update")
+    public ResponseEntity<ApiResponseDTO<ProgressResponseDTO>> update(
+            @RequestBody ProgressUpdateDTO dto) {
+
+        return ResponseEntity.ok(progressService.updateProgress(dto));
     }
 
     // DELETE - DELETE /progress/delete?ID=1
-    @DeleteMapping(path = "/delete")
-    public @ResponseBody String deleteProgress(@RequestParam int ID) {
-        return progressService.deleteProgress(ID);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiResponseDTO<String>> delete(
+            @PathVariable Integer id) {
+
+        return ResponseEntity.ok(progressService.deleteProgress(id));
     }
 }

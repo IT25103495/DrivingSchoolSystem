@@ -1,6 +1,8 @@
 package com.wd44.drivingschoolsystem.API.Services;
 
+import com.wd44.drivingschoolsystem.API.DTOs.ApiResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressCreateDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Lesson;
 import com.wd44.drivingschoolsystem.API.Models.Progress;
@@ -36,83 +38,132 @@ public class ProgressService {
     // ==================== CREATE ====================
     // Creates a progress record for a student
     @Transactional
-    public @ResponseBody String addProgress(ProgressCreateDTO _progress) {
-        Student student = studentRepo.findById(_progress.getStudentId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
+    public ApiResponseDTO<ProgressResponseDTO> addProgress(ProgressCreateDTO dto) {
 
-        // Check if progress already exists for this student
-        if (progressRepo.existsByStudent_ID(_progress.getStudentId())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Progress record already exists for this student!");
+        Student student = studentRepo.findById(dto.getStudentId())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
+
+        if (progressRepo.existsByStudent_ID(dto.getStudentId())) {
+            return new ApiResponseDTO<>(false, "Progress already exists", null);
         }
 
-        // Calculate progress from lessons
-        List<Lesson> lessons = getLessonsForStudent(_progress.getStudentId());
-        long completed = countCompletedLessons(lessons);
-        long pending = Math.max(TOTAL_COURSE_LESSONS - completed, 0);
-        int percentage = (int) Math.round(((double) completed / TOTAL_COURSE_LESSONS) * 100);
+        List<Lesson> lessons = lessonRepo.findByStudent_ID(dto.getStudentId());
+
+        int total = lessons.size();
+        int completed = (int) lessons.stream()
+                .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
+                .count();
+
+        int pending = total - completed;
+        int percentage = total == 0 ? 0 : (completed * 100 / total);
 
         Progress progress = new Progress();
         progress.setStudent(student);
-        progress.setTotalLessons(TOTAL_COURSE_LESSONS);
-        progress.setCompletedLessons((int) completed);
-        progress.setPendingLessons((int) pending);
+        progress.setTotalLessons(total);
+        progress.setCompletedLessons(completed);
+        progress.setPendingLessons(pending);
         progress.setProgressPercentage(percentage);
         progress.setLastUpdated(LocalDate.now());
 
-        progressRepo.save(progress);
-        return "Saved";
+        Progress saved = progressRepo.save(progress);
+
+        return new ApiResponseDTO<>(
+                true,
+                "Progress created successfully",
+                mapToDTO(saved)
+        );
     }
 
     // ==================== READ ====================
     // Get progress for a specific student
-    public Progress getProgressByStudentId(Integer studentId) {
+    public ApiResponseDTO<ProgressResponseDTO> getProgressByStudentId(Integer studentId) {
+
         studentRepo.findById(studentId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
+                .orElseThrow(() -> new RuntimeException("Student not found"));
 
         Progress progress = progressRepo.findByStudent_ID(studentId);
+
         if (progress == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Progress record not found for this student!");
+            return new ApiResponseDTO<>(false, "Progress not found", null);
         }
-        return progress;
+
+        return new ApiResponseDTO<>(
+                true,
+                "Progress fetched successfully",
+                mapToDTO(progress)
+        );
     }
 
     // Get all students progress
-    public Iterable<Progress> getAllStudentsProgress() {
-        return progressRepo.findAll();
+    public ApiResponseDTO<List<ProgressResponseDTO>> getAllStudentsProgress() {
+
+        List<ProgressResponseDTO> list = progressRepo.findAll()
+                .stream()
+                .map(this::mapToDTO)
+                .toList();
+
+        return new ApiResponseDTO<>(
+                true,
+                "All progress records fetched",
+                list
+        );
     }
 
     // ==================== UPDATE ====================
     // Recalculates and updates progress from lessons
     @Transactional
-    public @ResponseBody String updateProgress(int ID, ProgressUpdateDTO _progress) {
-        Progress progress = progressRepo.findById(ID)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Progress Not Found!"));
+    public ApiResponseDTO<ProgressResponseDTO> updateProgress(ProgressUpdateDTO dto) {
 
-        // Recalculate from lessons
-        List<Lesson> lessons = getLessonsForStudent(progress.getStudent().getID());
-        long completed = countCompletedLessons(lessons);
-        long pending = Math.max(TOTAL_COURSE_LESSONS - completed, 0);
-        int percentage = (int) Math.round(((double) completed / TOTAL_COURSE_LESSONS) * 100);
+        Student student = studentRepo.findById(dto.getStudentId())
+                .orElseThrow(() -> new RuntimeException("Student not found"));
 
-        progress.setCompletedLessons((int) completed);
-        progress.setPendingLessons((int) pending);
+        Progress progress = progressRepo.findByStudent_ID(dto.getStudentId());
+
+        if (progress == null) {
+            return new ApiResponseDTO<>(false, "Progress not found", null);
+        }
+
+        List<Lesson> lessons = lessonRepo.findByStudent_ID(dto.getStudentId());
+
+        int total = lessons.size();
+        int completed = (int) lessons.stream()
+                .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
+                .count();
+
+        int pending = total - completed;
+        int percentage = total == 0 ? 0 : (completed * 100 / total);
+
+        progress.setTotalLessons(total);
+        progress.setCompletedLessons(completed);
+        progress.setPendingLessons(pending);
         progress.setProgressPercentage(percentage);
         progress.setLastUpdated(LocalDate.now());
 
-        progressRepo.save(progress);
-        return "Updated";
+        Progress updated = progressRepo.save(progress);
+
+        return new ApiResponseDTO<>(
+                true,
+                "Progress updated successfully",
+                mapToDTO(updated)
+        );
     }
 
     // ==================== DELETE ====================
     // Delete a progress record
     @Transactional
-    public @ResponseBody String deleteProgress(int ID) {
-        if (progressRepo.existsById(ID)) {
-            progressRepo.deleteById(ID);
-            return "Deleted";
-        } else {
-            return "Not Found";
+    public ApiResponseDTO<String> deleteProgress(Integer id) {
+
+        if (!progressRepo.existsById(id)) {
+            return new ApiResponseDTO<>(false, "Progress not found", null);
         }
+
+        progressRepo.deleteById(id);
+
+        return new ApiResponseDTO<>(
+                true,
+                "Progress deleted successfully",
+                "Deleted ID: " + id
+        );
     }
 
     // ==================== HELPERS ====================
@@ -131,5 +182,23 @@ public class ProgressService {
         return lessons.stream()
                 .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
                 .count();
+    }
+
+
+    private ProgressResponseDTO mapToDTO(Progress progress) {
+
+        ProgressResponseDTO dto = new ProgressResponseDTO();
+
+        dto.setProgressId(progress.getProgressID());
+        dto.setStudentId(progress.getStudent().getID());
+
+        dto.setTotalLessons(progress.getTotalLessons());
+        dto.setCompletedLessons(progress.getCompletedLessons());
+        dto.setPendingLessons(progress.getPendingLessons());
+        dto.setProgressPercentage(progress.getProgressPercentage());
+
+        dto.setLastUpdated(progress.getLastUpdated().toString());
+
+        return dto;
     }
 }
