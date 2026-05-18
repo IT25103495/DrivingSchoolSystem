@@ -23,6 +23,10 @@ public class Payment {
     @Column(name = "Vehicle Type")
     private vehicleTypes vehicleType;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
+
     //  Getters and Setters
 
     public Integer getId() {
@@ -55,5 +59,13 @@ public class Payment {
 
     public void setVehicleType(vehicleTypes vehicleType) {
         this.vehicleType = vehicleType;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 }

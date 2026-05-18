@@ -1,6 +1,7 @@
 package com.wd44.drivingschoolsystem.API.Abstracts;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wd44.drivingschoolsystem.API.Models.AuthEntity;
 import jakarta.persistence.*;
 
@@ -39,6 +40,11 @@ public abstract class User {
         return phoneNum;
     }
     public AuthEntity getAuthEntity() {return authEntity;}
+
+    @JsonProperty("username")
+    public String getUsername() {
+        return authEntity != null ? authEntity.getUsername() : null;
+    }
 
     public void setID(Integer ID) {
         this.ID = ID;
