@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.wd44.drivingschoolsystem.API.Controllers</OriginalElement>
+  <nodes>
+    <node x="-214.51035896627855" y="848.1950848922609">com.wd44.drivingschoolsystem.API.Models.Student</node>
+    <node x="793.1703405401921" y="948.421682943144">com.wd44.drivingschoolsystem.API.Controllers.InstructorController</node>
+    <node x="463.497806786684" y="52.0">com.wd44.drivingschoolsystem.API.Models.Payment</node>
+    <node x="1453.2000917940886" y="503.8873899665555">com.wd44.drivingschoolsystem.API.Services.PaymentService</node>
+    <node x="793.1703405401921" y="700.4614314381272">com.wd44.drivingschoolsystem.API.Controllers.StudentController</node>
+    <node x="793.1703405401921" y="62.73930702341204">com.wd44.drivingschoolsystem.API.Controllers.AuthController</node>
+    <node x="1453.2000917940886" y="948.421682943144">com.wd44.drivingschoolsystem.API.Services.InstructorService</node>
+    <node x="68.47419369510294" y="-244.86976217440554">com.wd44.drivingschoolsystem.API.Enums.vehicleTypes</node>
+    <node x="1453.2000917940886" y="700.4614314381272">com.wd44.drivingschoolsystem.API.Services.StudentService</node>
+    <node x="1453.2000917940886" y="62.73930702341204">com.wd44.drivingschoolsystem.API.Services.AuthService</node>
+    <node x="793.9701050886872" y="503.8873899665555">com.wd44.drivingschoolsystem.API.Controllers.PaymentController</node>
+    <node x="-305.00344080267575" y="-244.04530011325016">com.wd44.drivingschoolsystem.API.Enums.userType</node>
+    <node x="-182.0665792642144" y="52.0">com.wd44.drivingschoolsystem.API.Models.AuthEntity</node>
+    <node x="-491.58034764125034" y="52.0">com.wd44.drivingschoolsystem.API.Abstracts.User</node>
+    <node x="1453.2000917940886" y="1208.3869752508363">com.wd44.drivingschoolsystem.API.Services.LessonService</node>
+    <node x="793.9701050886872" y="283.3133484949837">com.wd44.drivingschoolsystem.API.Controllers.ProgressController</node>
+    <node x="33.9334207357856" y="848.1950848922609">com.wd44.drivingschoolsystem.API.Models.Instructor</node>
+    <node x="796.1703405401921" y="1208.3869752508363">com.wd44.drivingschoolsystem.API.Controllers.LessonController</node>
+    <node x="189.71561376123475" y="52.0">com.wd44.drivingschoolsystem.API.Models.Lesson</node>
+    <node x="1453.2000917940886" y="283.3133484949837">com.wd44.drivingschoolsystem.API.Services.ProgressService</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.wd44.drivingschoolsystem.API.Abstracts.User" target="com.wd44.drivingschoolsystem.API.Models.AuthEntity" relationship="TO_ONE">
+      <point x="120.0" y="72.0" />
+      <point x="-170.5" y="0.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.LessonController" target="com.wd44.drivingschoolsystem.API.Services.LessonService" relationship="TO_ONE">
+      <point x="179.0000000000001" y="-24.0" />
+      <point x="-164.5" y="0.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.ProgressController" target="com.wd44.drivingschoolsystem.API.Services.ProgressService" relationship="TO_ONE">
+      <point x="249.0" y="24.0" />
+      <point x="-195.5" y="0.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.PaymentController" target="com.wd44.drivingschoolsystem.API.Services.PaymentService" relationship="TO_ONE">
+      <point x="236.0" y="12.0" />
+      <point x="-205.0" y="0.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.StudentService" target="com.wd44.drivingschoolsystem.API.Models.AuthEntity" relationship="CREATE">
+      <point x="-9.179408857562521E-5" y="-92.00043143812718" />
+      <point x="1622.7" y="668.0271457256806" />
+      <point x="-48.68469100291864" y="668.0271457256806" />
+      <point x="-37.11811173870424" y="270.4644115599558" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.AuthService" target="com.wd44.drivingschoolsystem.API.Models.AuthEntity" relationship="CREATE">
+      <point x="-141.00009179408858" y="-3.0702341203436845E-4" />
+      <point x="1373.0" y="154.739" />
+      <point x="1373.0" y="668.0271457256806" />
+      <point x="-61.682430059271724" y="668.0271457256806" />
+      <point x="-50.11585079505733" y="272.3062665115025" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Instructor" target="com.wd44.drivingschoolsystem.API.Abstracts.User" relationship="GENERALIZATION">
+      <point x="3.023411371145812E-4" y="-14.000497168743095" />
+      <point x="96.43372307692272" y="706.8228540796376" />
+      <point x="-371.5800453001132" y="706.8228540796376" />
+      <point x="3.023411371145812E-4" y="200.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Lesson" target="com.wd44.drivingschoolsystem.API.Models.Student" relationship="TO_ONE">
+      <point x="3.86238765258895E-4" y="272.0" />
+      <point x="311.216" y="645.0" />
+      <point x="-159.51" y="645.0" />
+      <point x="3.5896627855436236E-4" y="-14.000084892260816" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.AuthEntity" target="com.wd44.drivingschoolsystem.API.Models.Instructor" relationship="TO_ONE">
+      <point x="66.82886228453482" y="268.1616371610884" />
+      <point x="55.262283020320424" y="619.0" />
+      <point x="111.43372307692272" y="619.0" />
+      <point x="15.000302341137115" y="-14.000497168743095" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.AuthController" target="com.wd44.drivingschoolsystem.API.Services.AuthService" relationship="TO_ONE">
+      <point x="141.0000000000001" y="0.0" />
+      <point x="-141.0" y="-36.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.StudentService" target="com.wd44.drivingschoolsystem.API.Models.Student" relationship="CREATE">
+      <point x="-169.50009179408858" y="-4.314381271797174E-4" />
+      <point x="1411.0" y="792.461" />
+      <point x="1411.0" y="901.961" />
+      <point x="1832.7" y="901.961" />
+      <point x="1832.7" y="1173.922" />
+      <point x="-159.51" y="1173.922" />
+      <point x="3.5896627855436236E-4" y="13.999915107739184" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.AuthEntity" target="com.wd44.drivingschoolsystem.API.Models.Student" relationship="TO_ONE">
+      <point x="-1.0114452796981084" y="273.0913337005376" />
+      <point x="-12.578024543912505" y="645.0" />
+      <point x="-159.51" y="645.0" />
+      <point x="3.5896627855436236E-4" y="-14.000084892260816" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.InstructorService" target="com.wd44.drivingschoolsystem.API.Models.AuthEntity" relationship="CREATE">
+      <point x="-181.00009179408858" y="3.1705685614724644E-4" />
+      <point x="1373.0" y="1040.422" />
+      <point x="1373.0" y="668.0271457256806" />
+      <point x="-73.24587249838626" y="668.0271457256806" />
+      <point x="-61.679293234171865" y="270.63737762682536" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Student" target="com.wd44.drivingschoolsystem.API.Abstracts.User" relationship="GENERALIZATION">
+      <point x="-55.0" y="0.0" />
+      <point x="-386.5800453001132" y="862.1950848922609" />
+      <point x="-14.999697658862885" y="200.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Lesson" target="com.wd44.drivingschoolsystem.API.Enums.vehicleTypes" relationship="TO_ONE">
+      <point x="3.86238765258895E-4" y="-272.0" />
+      <point x="311.216" y="-28.0" />
+      <point x="182.974" y="-28.0" />
+      <point x="-1.9369510295064174E-4" y="67.99976217440553" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.LessonService" target="com.wd44.drivingschoolsystem.API.Models.Lesson" relationship="CREATE">
+      <point x="164.5" y="0.0" />
+      <point x="1895.7" y="1336.3869752508363" />
+      <point x="1895.7" y="26.392215615492645" />
+      <point x="326.216" y="26.392215615492645" />
+      <point x="15.000386238765259" y="-272.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.AuthService" target="com.wd44.drivingschoolsystem.API.Models.Student" relationship="CREATE">
+      <point x="-141.00009179408858" y="14.999692976587966" />
+      <point x="1386.3388224971234" y="169.739" />
+      <point x="1386.3388224971234" y="901.961" />
+      <point x="1832.7" y="901.961" />
+      <point x="1832.7" y="1173.922" />
+      <point x="-159.51" y="1173.922" />
+      <point x="3.5896627855436236E-4" y="13.999915107739184" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.AuthEntity" target="com.wd44.drivingschoolsystem.API.Enums.userType" relationship="TO_ONE">
+      <point x="-163.0" y="-272.0" />
+      <point x="27.436861538461358" y="80.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.StudentController" target="com.wd44.drivingschoolsystem.API.Services.StudentService" relationship="TO_ONE">
+      <point x="171.0000000000001" y="2.9995685618728203" />
+      <point x="-169.5" y="14.99956856187282" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Lesson" target="com.wd44.drivingschoolsystem.API.Models.Instructor" relationship="TO_ONE">
+      <point x="-64.10130446937674" y="267.53547445105346" />
+      <point x="247.114309291858" y="619.0" />
+      <point x="111.43372307692272" y="619.0" />
+      <point x="15.000302341137115" y="-14.000497168743095" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Models.Payment" target="com.wd44.drivingschoolsystem.API.Enums.vehicleTypes" relationship="TO_ONE">
+      <point x="1.9321331603805447E-4" y="-164.0" />
+      <point x="596.998" y="-28.0" />
+      <point x="182.974" y="-28.0" />
+      <point x="-1.9369510295064174E-4" y="67.99976217440553" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Services.InstructorService" target="com.wd44.drivingschoolsystem.API.Models.Instructor" relationship="CREATE">
+      <point x="0.0" y="-91.99999999999989" />
+      <point x="1634.2000917940886" y="925.9614314381272" />
+      <point x="96.4334207357856" y="925.9614314381272" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="com.wd44.drivingschoolsystem.API.Controllers.InstructorController" target="com.wd44.drivingschoolsystem.API.Services.InstructorService" relationship="TO_ONE">
+      <point x="182.0000000000001" y="3.0003170568561472" />
+      <point x="-181.0" y="15.000317056856147" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="1.0346826781778105" showDependencies="true" x="-8.835561719834004" y="137.51297087378617" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
