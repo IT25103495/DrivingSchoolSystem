@@ -36,6 +36,7 @@ const HomePage = () => {
                     </Link>
                     { (user?.role == "INSTRUCTOR") ? <Link
                             to="/lessonsInstructor"
+                            reloadDocument
                             className="w-full py-3 font-bold text-xl rounded shadow-lg text-white bg-blue-300 hover:opacity-70 flex justify-center items-center"
                         >
                             <CiViewList className="size-10 mr-2 -ml-2"/>
