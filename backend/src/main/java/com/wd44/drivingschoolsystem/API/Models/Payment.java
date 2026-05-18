@@ -32,7 +32,6 @@ public class Payment {
     public Integer getId() {
         return ID;
     }
-
     public void setId(Integer ID) {
         this.ID = ID;
     }
@@ -40,7 +39,6 @@ public class Payment {
     public double getAmount() {
         return amount;
     }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -48,7 +46,6 @@ public class Payment {
     public LocalDate getPaymentDate() {
         return paymentDate;
     }
-
     public void setPaymentDate(LocalDate paymentDate) {
         this.paymentDate = paymentDate;
     }
@@ -56,7 +53,6 @@ public class Payment {
     public vehicleTypes getVehicleType() {
         return vehicleType;
     }
-
     public void setVehicleType(vehicleTypes vehicleType) {
         this.vehicleType = vehicleType;
     }
@@ -64,7 +60,6 @@ public class Payment {
     public Student getStudent() {
         return student;
     }
-
     public void setStudent(Student student) {
         this.student = student;
     }

@@ -32,9 +32,9 @@ public class PaymentService {
         return calculateBill(type);
     }
 
-    /**
-     * Validates card and amount, and persists the payment to the database.
-     */
+
+     //Validates card and amount
+
     public Map<String, Object> processPayment(paymentSendDTO payment) {
         Student student = studentRepo.findById(payment.getStudentID())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student not found"));
