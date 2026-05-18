@@ -4,6 +4,7 @@ public class paymentSendDTO {
     protected int studentID;
     protected String cardNumber;
     protected double amount;
+    protected String vehicleType;
 
     public int getStudentID() {
         return studentID;
@@ -15,5 +16,9 @@ public class paymentSendDTO {
 
     public double getAmount() {
         return amount;
+    }
+
+    public String getVehicleType() {
+        return vehicleType;
     }
 }
