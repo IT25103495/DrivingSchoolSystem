@@ -49,7 +49,7 @@ public class StudentService {
         return "Saved";
     }
 
-    //TODO: [1] For the loveee of god make a mapper class pleaseeee (use @Mapper)
+
 
     //Redundant code and wasted database lookup doing existsBy and then findBy, this was done to return a nice message besides 'internal server error'
     //See if there's a workaround
