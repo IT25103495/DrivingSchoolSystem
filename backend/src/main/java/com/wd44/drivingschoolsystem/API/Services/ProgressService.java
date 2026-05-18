@@ -1,112 +1,135 @@
 package com.wd44.drivingschoolsystem.API.Services;
 
+import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressCreateDTO;
+import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressUpdateDTO;
 import com.wd44.drivingschoolsystem.API.Models.Lesson;
+import com.wd44.drivingschoolsystem.API.Models.Progress;
 import com.wd44.drivingschoolsystem.API.Models.Student;
 import com.wd44.drivingschoolsystem.API.Repos.LessonRepo;
+import com.wd44.drivingschoolsystem.API.Repos.ProgressRepo;
 import com.wd44.drivingschoolsystem.API.Repos.StudentRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class ProgressService {
 
     @Autowired
-    private LessonRepo lessonRepo;
+    private ProgressRepo progressRepo;
 
     @Autowired
     private StudentRepo studentRepo;
 
-    // Total lessons required to complete the course
+    @Autowired
+    private LessonRepo lessonRepo;
+
     private static final int TOTAL_COURSE_LESSONS = 10;
 
-    public Map<String, Object> getProgressByStudentId(Integer studentId) {
-        // Verify student exists
-        Student student = studentRepo.findById(studentId)
+    // ==================== CREATE ====================
+    // Creates a progress record for a student
+    @Transactional
+    public @ResponseBody String addProgress(ProgressCreateDTO _progress) {
+        Student student = studentRepo.findById(_progress.getStudentId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
 
-        // Get all lessons for the student
-        List<Lesson> allLessons = new ArrayList<>();
-        lessonRepo.findAll().forEach(lesson -> {
-            if (lesson.getStudent() != null &&
-                lesson.getStudent().getID().equals(studentId)) {
-                allLessons.add(lesson);
-            }
-        });
-
-        // Build chart data from lessons that have grades
-        List<Map<String, Object>> chartData = new ArrayList<>();
-        int lessonNumber = 1;
-        for (Lesson lesson : allLessons) {
-            Map<String, Object> point = new HashMap<>();
-            point.put("lessonNumber", lessonNumber);
-            point.put("lessonID", lesson.getLessonID());
-            point.put("grade", String.valueOf(lesson.getGrade()));
-            point.put("feedback", lesson.getFeedback());
-            point.put("lessonDate", lesson.getLessonDate() != null ? lesson.getLessonDate().toString() : null);
-            point.put("vehicleType", lesson.getVehicleType());
-            chartData.add(point);
-            lessonNumber++;
+        // Check if progress already exists for this student
+        if (progressRepo.existsByStudent_ID(_progress.getStudentId())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Progress record already exists for this student!");
         }
 
-        // Count completed lessons (those with a non-null, non-default grade)
-        long completedLessons = allLessons.stream()
-                .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
-                .count();
+        // Calculate progress from lessons
+        List<Lesson> lessons = getLessonsForStudent(_progress.getStudentId());
+        long completed = countCompletedLessons(lessons);
+        long pending = Math.max(TOTAL_COURSE_LESSONS - completed, 0);
+        int percentage = (int) Math.round(((double) completed / TOTAL_COURSE_LESSONS) * 100);
 
-        long pendingLessons = TOTAL_COURSE_LESSONS - completedLessons;
-        if (pendingLessons < 0) pendingLessons = 0;
+        Progress progress = new Progress();
+        progress.setStudent(student);
+        progress.setTotalLessons(TOTAL_COURSE_LESSONS);
+        progress.setCompletedLessons((int) completed);
+        progress.setPendingLessons((int) pending);
+        progress.setProgressPercentage(percentage);
+        progress.setLastUpdated(LocalDate.now());
 
-        // Calculate percentage
-        double progressPercentage = ((double) completedLessons / TOTAL_COURSE_LESSONS) * 100;
-
-        // Build result map
-        Map<String, Object> result = new HashMap<>();
-        result.put("studentId", studentId);
-        result.put("studentName", student.getFullName());
-        result.put("totalLessons", TOTAL_COURSE_LESSONS);
-        result.put("completedLessons", completedLessons);
-        result.put("pendingLessons", pendingLessons);
-        result.put("progressPercentage", Math.round(progressPercentage));
-        result.put("chartData", chartData);
-
-        return result;
+        progressRepo.save(progress);
+        return "Saved";
     }
 
-    public List<Map<String, Object>> getAllStudentsProgress() {
-        List<Map<String, Object>> allProgress = new ArrayList<>();
+    // ==================== READ ====================
+    // Get progress for a specific student
+    public Progress getProgressByStudentId(Integer studentId) {
+        studentRepo.findById(studentId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Not Found!"));
 
-        studentRepo.findAll().forEach(student -> {
-            List<Lesson> lessons = new ArrayList<>();
-            lessonRepo.findAll().forEach(lesson -> {
-                if (lesson.getStudent() != null &&
-                    lesson.getStudent().getID().equals(student.getID())) {
-                    lessons.add(lesson);
-                }
-            });
+        Progress progress = progressRepo.findByStudent_ID(studentId);
+        if (progress == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Progress record not found for this student!");
+        }
+        return progress;
+    }
 
-            long completed = lessons.stream()
-                    .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
-                    .count();
+    // Get all students progress
+    public Iterable<Progress> getAllStudentsProgress() {
+        return progressRepo.findAll();
+    }
 
-            double percentage = ((double) completed / TOTAL_COURSE_LESSONS) * 100;
+    // ==================== UPDATE ====================
+    // Recalculates and updates progress from lessons
+    @Transactional
+    public @ResponseBody String updateProgress(int ID, ProgressUpdateDTO _progress) {
+        Progress progress = progressRepo.findById(ID)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Progress Not Found!"));
 
-            Map<String, Object> studentProgress = new HashMap<>();
-            studentProgress.put("studentId", student.getID());
-            studentProgress.put("studentName", student.getFullName());
-            studentProgress.put("completedLessons", completed);
-            studentProgress.put("totalLessons", TOTAL_COURSE_LESSONS);
-            studentProgress.put("progressPercentage", Math.round(percentage));
+        // Recalculate from lessons
+        List<Lesson> lessons = getLessonsForStudent(progress.getStudent().getID());
+        long completed = countCompletedLessons(lessons);
+        long pending = Math.max(TOTAL_COURSE_LESSONS - completed, 0);
+        int percentage = (int) Math.round(((double) completed / TOTAL_COURSE_LESSONS) * 100);
 
-            allProgress.add(studentProgress);
+        progress.setCompletedLessons((int) completed);
+        progress.setPendingLessons((int) pending);
+        progress.setProgressPercentage(percentage);
+        progress.setLastUpdated(LocalDate.now());
+
+        progressRepo.save(progress);
+        return "Updated";
+    }
+
+    // ==================== DELETE ====================
+    // Delete a progress record
+    @Transactional
+    public @ResponseBody String deleteProgress(int ID) {
+        if (progressRepo.existsById(ID)) {
+            progressRepo.deleteById(ID);
+            return "Deleted";
+        } else {
+            return "Not Found";
+        }
+    }
+
+    // ==================== HELPERS ====================
+    private List<Lesson> getLessonsForStudent(Integer studentId) {
+        List<Lesson> lessons = new ArrayList<>();
+        lessonRepo.findAll().forEach(lesson -> {
+            if (lesson.getStudent() != null &&
+                    lesson.getStudent().getID().equals(studentId)) {
+                lessons.add(lesson);
+            }
         });
+        return lessons;
+    }
 
-        return allProgress;
+    private long countCompletedLessons(List<Lesson> lessons) {
+        return lessons.stream()
+                .filter(l -> l.getGrade() != '\0' && l.getGrade() != 0)
+                .count();
     }
 }
