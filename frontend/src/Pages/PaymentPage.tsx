@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import Navbar from '../Components/Navbar/Navbar';
 import { useAuth } from '../Context/useAuth';
+import { autoRegisterLessonAPI } from '../Services/APIService';
 
 const API = 'http://localhost:8080/';
 
@@ -225,9 +226,13 @@ const errStyle: React.CSSProperties = { color: '#ef4444', fontSize: 11, marginTo
 const PaymentPage = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    const [step, setStep] = useState<Step>('choose');
-    const [selectedKey, setSelectedKey] = useState<VehicleKey | null>(null);
+    const state = location.state as { vehicleType?: string, firstDate?: Date | string } | null;
+
+    const [step, setStep] = useState<Step>(state?.vehicleType ? 'pay' : 'choose');
+    const [selectedKey, setSelectedKey] = useState<VehicleKey | null>(state?.vehicleType ? state.vehicleType.toUpperCase() as VehicleKey : null);
+    const [firstDate] = useState<Date | string | null>(state?.firstDate ?? null);
     const [prices, setPrices] = useState<Record<VehicleKey, number | null>>({ LIGHT: null, HEAVY: null });
     const [cardNum, setCardNum] = useState('');
     const [expiry, setExpiry] = useState('');
@@ -316,10 +321,26 @@ const PaymentPage = () => {
                 studentID,
                 cardNumber: cardNum.replace(/\s/g, ''),
                 amount,
+                vehicleType: selectedKey,
             });
 
             if (res.data.success) {
-                setStep('success');
+                if (firstDate) {
+                    try {
+                        const lessonRes = await autoRegisterLessonAPI(selectedKey, new Date(firstDate), user!.username);
+                        if (lessonRes?.status === 200) {
+                            setStep('success');
+                        } else {
+                            toast.warning('Payment succeeded but lesson registration failed. Please contact support.');
+                            setStep('success');
+                        }
+                    } catch {
+                        toast.warning('Payment succeeded but lesson registration failed. Please contact support.');
+                        setStep('success');
+                    }
+                } else {
+                    setStep('success');
+                }
             } else {
                 toast.error(res.data.message || 'Payment failed. Check your card details.');
             }
@@ -477,10 +498,10 @@ const PaymentPage = () => {
                             Amount paid: <strong style={{ color: '#111827' }}>{prices[selectedKey!] !== null ? fmt(prices[selectedKey!]!) : ''}</strong>
                         </p>
                         <button
-                            onClick={() => navigate('/regLesson')}
+                            onClick={() => navigate(firstDate ? '/lessons' : '/regLesson')}
                             style={{ width: '100%', background: '#3b82f6', color: 'white', border: 'none', borderRadius: 12, padding: '13px', fontSize: 15, fontWeight: 700, cursor: 'pointer', marginBottom: 10, boxShadow: '0 4px 16px rgba(59,130,246,0.3)' }}
                         >
-                            Register for Lessons
+                            {firstDate ? 'View Your Lessons' : 'Register for Lessons'}
                         </button>
                         <button
                             onClick={() => navigate('/home')}

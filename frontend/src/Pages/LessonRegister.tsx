@@ -40,27 +40,7 @@ const LessonRegister = (props: Props) => {
     const navigate = useNavigate();
 
     const handleRegister = (form: RegisterFormsInputs) => {
-        RegisterLesson(form.vehicleType, form.firstDate)
-    }
-
-    const RegisterLesson = async (vehicleType:string, firstDate: Date) => {
-        await autoRegisterLessonAPI(vehicleType,firstDate,user.username).then((res) => {
-            if (res.status == 200) {
-                toast.success("Registered for Lessons")
-                navigate("/lessons");
-            }
-            else
-                toast.warning("Registration failed", {
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    transition: Bounce,
-                    position: "bottom-right",})
-        }).catch((e) => toast.warning("Server error occured", {
-            hideProgressBar: true,
-            closeOnClick: true,
-            transition: Bounce,
-            position: "bottom-right",
-        }))
+        navigate("/payment", { state: { vehicleType: form.vehicleType, firstDate: form.firstDate } });
     }
 
     useEffect(() => {
@@ -110,7 +90,7 @@ const LessonRegister = (props: Props) => {
                                     type="submit"
                                     className="w-full text-white bg-blue-300 hover:opacity-70 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 >
-                                    Register
+                                    Proceed to Payment
                                 </button>
                             </form>
                         </div>
