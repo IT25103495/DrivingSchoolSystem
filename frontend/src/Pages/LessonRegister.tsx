@@ -1,20 +1,13 @@
-import React, {useState ,useEffect} from 'react'
+import { useState, useEffect } from 'react';
 import * as Yup from "yup"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useAuth } from '../Context/useAuth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import DatePicker from "react-datepicker";
-import {makeStudent} from "../Helpers/ObjectMaker"
-import Navbar from '../Components/Navbar/Navbar'
-import { Bounce, Slide, toast } from "react-toastify";
+import Navbar from '../Components/Navbar/Navbar';
 import { useNavigate } from "react-router-dom";
 
-import "../Components/DatePicker/calander.css"
-import {loginAPI} from "../Services/AuthService";
-import {autoRegisterLessonAPI} from "../Services/APIService";
+import "../Components/DatePicker/calander.css";
 
-type Props = {}
 
 type RegisterFormsInputs = {
     vehicleType : string;
@@ -30,11 +23,10 @@ const validation = Yup.object().shape({
     firstDate: Yup.date().required("Date of first lesson is required").min(tomorrow, 'First lesson must be at least 1 day from now'),
 })
 
-const LessonRegister = (props: Props) => {
-    const { register, handleSubmit , setValue, formState: {errors}} = useForm<RegisterFormsInputs>({ resolver: yupResolver(validation)})
-    const { user } = useAuth();
+const LessonRegister = () => {
+    const { handleSubmit , setValue, formState: {errors}} = useForm<RegisterFormsInputs>({ resolver: yupResolver(validation)})
 
-    const [firstDate, setFirstDate] = useState(new Date(Date.now()));
+    const [firstDate, setFirstDate] = useState<Date>(() => new Date(Date.now()));
     const [vehicleType, setVehicleType] = useState("Light");
 
     const navigate = useNavigate();
@@ -79,7 +71,7 @@ const LessonRegister = (props: Props) => {
                                     >
                                         Schedule first lesson for:
                                     </label>
-                                    <DatePicker selected={firstDate} onChange={(date) => setFirstDate(date)}/>
+                                    <DatePicker selected={firstDate} onChange={(date: Date | null) => { if (date) setFirstDate(date); }}/>
                                     {errors.firstDate ? <p>{errors.firstDate.message}</p> : ""}
                                     <label className="flex flex-col text-gray-500 text-xs mt-2">
                                         Arrow Keys: Navigate<br/>
