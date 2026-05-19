@@ -4,18 +4,15 @@ import com.wd44.drivingschoolsystem.API.DTOs.ApiResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressCreateDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressResponseDTO;
 import com.wd44.drivingschoolsystem.API.DTOs.Progress.ProgressUpdateDTO;
-import com.wd44.drivingschoolsystem.API.Models.Progress;
 import com.wd44.drivingschoolsystem.API.Services.ProgressService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
-@Controller
+@RestController
 @CrossOrigin
 @SecurityRequirement(name = "bearerAuth")
 @RequestMapping(path = "/progress")
