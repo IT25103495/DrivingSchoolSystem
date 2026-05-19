@@ -9,6 +9,7 @@ import Lessons from '../Pages/LessonView'
 import LessonsInstructor from '../Pages/LessonViewInstructor'
 import RegLesson from '../Pages/LessonRegister'
 import Payment from '../Pages/PaymentPage'
+import Progress from '../Pages/ProgressPage'
 
 const routes: RouteObject[] = [
     {
@@ -46,6 +47,10 @@ const routes: RouteObject[] = [
     {
         path: '/payment',
         element: <ProtectedRoute><Payment/></ProtectedRoute>
+    },
+    {
+        path: '/progress',
+        element: <ProtectedRoute><Progress/></ProtectedRoute>
     }
 ]
 
